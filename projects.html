@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects - Sahar Eitam</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js" integrity="sha512-24XP4a9KVoIinPZUDjtvus/V1n3QAPUuGqa7RX2NzpR3LBzJWZ+h/w2vCNdWbU8azV13BpEziGjgb2v7QkX6Mg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-content">
+        <a href="index.html" class="logo">SE</a>
+
+        <div class="nav-links">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="projects.html" class="nav-link active">Projects</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Projects Section -->
+  <section class="section projects-page">
+    <div class="container">
+      <h1 class="page-title">Projects</h1>
+      <p class="page-description">
+        Explore my portfolio of projects spanning various technologies and domains.
+      </p>
+      
+      <div class="project-filter">
+        <button class="filter-btn active" data-category="all">All</button>
+        <button class="filter-btn" data-category="web">Web</button>
+        <button class="filter-btn" data-category="ai-ml">AI/ML</button>
+        <button class="filter-btn" data-category="backend">Backend</button>
+        <button class="filter-btn" data-category="algorithms">Algorithms</button>
+      </div>
+      
+      <div class="projects-grid-detailed" id="projects-container-detailed">
+        <!-- Projects will be loaded here by JavaScript -->
+      </div>
+      
+      <div class="no-projects hidden" id="no-projects">
+        <p>No projects found in this category.</p>
+        <button class="btn btn-primary" id="view-all-btn">View All Projects</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <p class="copyright">
+          © <span id="current-year"></span> Sahar Eitam. All rights reserved.
+        </p>
+        <div class="social-links">
+          
+            href="https://github.com/sahareitam"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-link"
+          >
+            <i data-feather="github"></i>
+          </a>
+          
+            href="https://linkedin.com/in/sahar-eitam-73b732228"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-link"
+          >
+            <i data-feather="linkedin"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/projects-detailed.js"></script>
+</body>
+</html>
