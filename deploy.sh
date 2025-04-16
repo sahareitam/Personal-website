@@ -1,15 +1,9 @@
 #!/usr/bin/env sh
 
-# עצור בשגיאה
 set -e
 
-# עבור לתיקיית הקליינט
-cd client
-
-# בנה את הפרויקט
 npm run build
 
-# עבור לתיקיית הבנייה
 cd dist
 
 git init
