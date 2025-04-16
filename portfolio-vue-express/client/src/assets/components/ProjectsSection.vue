@@ -84,13 +84,13 @@ export default {
           title: "Chrome Keyboard Fixer",
           description: "Chrome extension with Python Flask backend on GCP. Implements RESTful API with comprehensive error handling, concurrency management, and security best practices including input validation and IP-based rate limiting.",
           tech: ["JavaScript", "Python", "Flask", "GCP", "REST API"],
-          github: "#"
+          github: "https://github.com/sahareitam/chrome-keyboard-fixer",
         },
         {
           title: "Task Management System",
           description: "Task management system using Go and Docker. Features RESTful API, Goroutines for concurrency, sync.Cond for task synchronization, and CLI client interface.",
           tech: ["Go", "Docker", "REST API", "CLI"],
-          github: "#"
+          github: "https://github.com/sahareitam/task-manager",
         },
         {
           title: "Grandmother Website Project",

@@ -19,8 +19,8 @@
           </div>
           <div class="p-6">
             <div class="mb-6">
-              <p class="text-lg font-medium">B.Sc in Software & Information Systems Engineering</p>
-              <p class="text-gray-600">Ben-Gurion University</p>
+              <p class="text-xl font-semibold text-blue-800">B.Sc in Software & Information Systems Engineering</p>
+              <p class="text-gray-700 font-medium">Ben-Gurion University</p>
               <p class="text-gray-600">Currently in third year with 3 semesters remaining</p>
               <p class="text-gray-600">GPA: 86.33 | Last semester: 90.6</p>
             </div>
@@ -47,7 +47,7 @@
                     <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                     <polyline points="22 4 12 14.01 9 11.01"></polyline>
                   </svg>
-                  Completed Courses
+                  Relevant Completed Courses
                 </h4>
                 <ul class="space-y-2">
                   <li v-for="(course, index) in educationCourses.completed" :key="index" class="text-gray-600 text-sm">
@@ -119,12 +119,59 @@
               <h3 class="text-xl font-semibold">Military Service</h3>
             </div>
             <div class="p-6">
-              <h4 class="font-medium">Intelligence Corps</h4>
-              <p class="text-gray-600 mb-2">Israeli Defense Forces</p>
+              <h4 class="font-medium">Combat Soldier and Commander</h4>
+              <p class="text-gray-600 mb-2">Sayeret Givati Unit</p>
               <ul class="text-gray-600 text-sm space-y-1">
-                <li>• Served in a classified technological intelligence unit</li>
-                <li>• Honorably discharged with rank of Staff Sergeant</li>
+                <li>• Led complex operations and managed team training</li>
+                <li>• Emphasized leadership and collaboration</li>
+                <li>• Demonstrated high level of personal responsibility</li>
               </ul>
+            </div>
+          </div>
+        </div>
+        <!-- Additional Skills & Volunteering -->
+        <div class="grid md:grid-cols-2 gap-6">
+          <!-- Professional Attributes -->
+          <div class="shadow-sm overflow-hidden rounded-lg border">
+            <div class="bg-gray-50 py-3 px-6 border-b flex items-center gap-2">
+              <!-- אייקון מסוג Award (אפשר להחליף לאייקון SVG מתאים) -->
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path d="M12 1l3 5 5 .5-3.5 3 1 5-4.5-2.5L9 15l1-5-3.5-3 5-.5 3-5z" />
+              </svg>
+              <h3 class="text-xl font-semibold">Professional Attributes</h3>
+            </div>
+            <div class="p-6">
+              <div class="flex flex-wrap gap-2">
+                <span class="bg-[#f0ebe0] text-gray-700 border border-gray-300 rounded-full px-3 py-1 text-sm">Problem analysis and solution design</span>
+                <span class="bg-[#f0ebe0] text-gray-700 border border-gray-300 rounded-full px-3 py-1 text-sm">Collaborative project implementation</span>
+                <span class="bg-[#f0ebe0] text-gray-700 border border-gray-300 rounded-full px-3 py-1 text-sm">Systematic requirements gathering</span>
+                <span class="bg-[#f0ebe0] text-gray-700 border border-gray-300 rounded-full px-3 py-1 text-sm">User-focused thinking</span>
+                <span class="bg-[#f0ebe0] text-gray-700 border border-gray-300 rounded-full px-3 py-1 text-sm">Rapid self-learning capabilities</span>
+                <span class="bg-[#f0ebe0] text-gray-700 border border-gray-300 rounded-full px-3 py-1 text-sm">Strong analytical skills</span>
+                <span class="bg-[#f0ebe0] text-gray-700 border border-gray-300 rounded-full px-3 py-1 text-sm">Leadership and operational management</span>
+                <span class="bg-[#f0ebe0] text-gray-700 border border-gray-300 rounded-full px-3 py-1 text-sm">Project planning and optimization</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Volunteering -->
+          <div class="shadow-sm overflow-hidden rounded-lg border">
+            <div class="bg-gray-50 py-3 px-6 border-b flex items-center gap-2">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path d="M17 20h5v-2a4 4 0 0 0-3-3.87M9 20H4v-2a4 4 0 0 1 3-3.87m6-5a4 4 0 1 0-8 0 4 4 0 0 0 8 0zm6 0a4 4 0 1 0-8 0 4 4 0 0 0 8 0z" />
+              </svg>
+              <h3 class="text-xl font-semibold">Volunteering</h3>
+            </div>
+            <div class="p-6 space-y-4">
+              <div>
+                <h4 class="font-medium">Mathematics Tutor</h4>
+                <p class="text-gray-600">"Perach Mathematics" Project - Tutoring high school students in 5-unit math</p>
+              </div>
+              <div>
+                <h4 class="font-medium">Community Support Volunteer</h4>
+                <p class="text-gray-600">Community Anchor Youth Village - Supporting at-risk youth in enrichment programs</p>
+              </div>
             </div>
           </div>
         </div>
@@ -140,28 +187,39 @@ export default {
     return {
       educationCourses: {
         inProgress: [
-          'Advanced Algorithms',
-          'Computer Security',
-          'Machine Learning',
-          'Software Engineering Project'
+          'Software Quality Engineering - Unit Testing, Integration Testing, Selenium, Cucumber, Quality Metrics, TDD',
+          'Computer and Network Security - Cryptography, Authentication, Security Protocols, Malicious Code Detection, Firewalls',
+          'Data communication - Understanding of network protocols (TCP/IP, UDP, HTTP), packet/circuit switching',
+          'Software Project Management - Agile methodologies, Project lifecycle, Team collaboration',
+          'Web development environment - RESTful APIs, Node.js, Vue.js, Docker, Cloud services (Azure)',
+          'Software Engineering Project',
+          'Analysis and decision making',
+          'Data Science Ethics'
         ],
         completed: [
-          'Data Structures',
-          'Algorithms',
-          'Operating Systems',
-          'Object-Oriented Programming',
-          'Computer Organization',
-          'Database Systems',
-          'Computer Networks',
-          'Web Development',
-          'Introduction to AI'
+        'Artificial Intelligence (95) - Reinforcement Learning, Deep RL, Bayesian Networks',
+        'Machine Learning (89) - Neural Networks, Ensemble Methods, SVM',
+        'Operating Systems (95) - Process Management, Virtual Memory, Multi-threading',
+        'Object Oriented Programming (94) - Design Patterns, SOLID Principles',
+        'Analysis and Design of Software Systems (88) - Architecture, UML, OCL',
+        'Elements of Computing Systems (90) - CPU components, MIPS assembly, computer architecture, and hardware interfaces',
+        'Human-Computer Interface (86) - Usability, Prototyping, Eye Tracking, Accessibility',
+        'Data Structures',
+        'Algorithms',
+        'Databases',
+        'Introduction to Computer Science'
         ]
       },
       skills: {
-        'Languages': ['Python', 'Java', 'C++', 'JavaScript', 'TypeScript', 'Go', 'SQL'],
-        'Web Development': ['HTML5', 'CSS3', 'React', 'Vue.js', 'Node.js', 'Express', 'RESTful APIs'],
-        'Tools & Platforms': ['Git', 'Docker', 'AWS', 'GCP', 'Linux', 'VSCode'],
-        'Data & ML': ['NumPy', 'Pandas', 'TensorFlow', 'PyTorch', 'Scikit-Learn']
+        "Languages": ["Python (Primary)", "Java", "C/C++", "Go", "C#"],
+        "Frontend Development": ["JavaScript", "HTML", "CSS", "Chrome Extensions API"],
+        "Backend Development": ["REST APIs", "Flask", "Error handling", "Logging"],
+        "Cloud & DevOps": ["GCP", "App Engine", "Git", "GitHub", "Docker"],
+        "Security": ["Cryptography", "Authentication", "Malware Detection", "Network Security"],
+        "Data & Databases": ["PostgreSQL", "Pandas", "SQL", "Data Processing"],
+        "AI & ML": ["Neural Networks", "Reinforcement Learning", "LangChain", "RAG"],
+        "Scientific Programming": ["NumPy", "Pandas", "Algorithm Development"],
+        "Testing": ["Unit Testing", "Integration Testing", "PyTest", "Selenium", "TDD"]
       }
     }
   }
