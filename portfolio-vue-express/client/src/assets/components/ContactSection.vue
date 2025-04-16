@@ -101,7 +101,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+// הסרנו את ייבוא axios שלא בשימוש
 
 export default {
   name: 'ContactSection',

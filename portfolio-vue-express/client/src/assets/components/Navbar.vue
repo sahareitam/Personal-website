@@ -58,7 +58,7 @@
 
 <script>
 export default {
-  name: 'Navbar',
+  name: 'NavbarComponent', // שינינו ל-multi-word
   props: {
     activeSection: {
       type: String,

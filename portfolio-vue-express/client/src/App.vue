@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <Navbar :active-section="activeSection" :is-scrolled="isScrolled" />
+    <NavbarComponent :active-section="activeSection" :is-scrolled="isScrolled" />
     <HomeSection id="home" />
     <AboutSection id="about" />
     <ProjectsSection id="projects" />
@@ -12,16 +12,16 @@
 </template>
 
 <script>
-import Navbar from './components/Navbar.vue';
-import HomeSection from './components/HomeSection.vue';
-import AboutSection from './components/AboutSection.vue';
-import ProjectsSection from './components/ProjectsSection.vue';
-import ContactSection from './components/ContactSection.vue';
+import NavbarComponent from './assets/components/Navbar.vue';
+import HomeSection from './assets/components/HomeSection.vue';
+import AboutSection from './assets/components/AboutSection.vue';
+import ProjectsSection from './assets/components/ProjectsSection.vue';
+import ContactSection from './assets/components/ContactSection.vue';
 
 export default {
   name: 'App',
   components: {
-    Navbar,
+    NavbarComponent,
     HomeSection,
     AboutSection,
     ProjectsSection,
