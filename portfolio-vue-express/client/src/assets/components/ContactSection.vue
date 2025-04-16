@@ -7,7 +7,7 @@
         <div class="md:col-span-3">
           <div class="shadow-sm rounded-lg border overflow-hidden">
             <div class="p-6">
-              <form @submit.prevent="submitForm" class="space-y-6">
+              <div class="space-y-6">
                 <div>
                   <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
                   <input 
@@ -16,7 +16,7 @@
                     type="text"
                     placeholder="Your Name"
                     class="w-full p-2 border border-gray-300 rounded"
-                    required
+                    disabled
                   />
                 </div>
                 
@@ -28,7 +28,7 @@
                     type="email"
                     placeholder="Your Email"
                     class="w-full p-2 border border-gray-300 rounded"
-                    required
+                    disabled
                   />
                 </div>
                 
@@ -39,25 +39,22 @@
                     v-model="formData.message"
                     placeholder="Your Message"
                     class="w-full p-2 border border-gray-300 rounded min-h-120"
-                    required
+                    disabled
                   ></textarea>
                 </div>
                 
                 <button 
-                  type="submit" 
-                  class="w-full py-2 px-4 bg-gray-800 hover:bg-gray-700 text-white rounded"
-                  :disabled="isSubmitting"
+                  type="button" 
+                  class="w-full py-2 px-4 bg-gray-800 hover:bg-gray-700 text-white rounded opacity-50 cursor-not-allowed"
+                  disabled
                 >
-                  {{ isSubmitting ? 'Sending...' : 'Send Message' }}
+                  Contact Form Disabled
                 </button>
 
-                <div v-if="submitStatus" :class="[
-                  'p-3 rounded text-center',
-                  submitStatus.type === 'success' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
-                ]">
-                  {{ submitStatus.message }}
+                <div class="p-3 rounded text-center bg-amber-100 text-amber-800">
+                  Please contact me directly using the contact information on the right.
                 </div>
-              </form>
+              </div>
             </div>
           </div>
         </div>
@@ -101,8 +98,6 @@
 </template>
 
 <script>
-// הסרנו את ייבוא axios שלא בשימוש
-
 export default {
   name: 'ContactSection',
   data() {
@@ -111,52 +106,6 @@ export default {
         name: '',
         email: '',
         message: ''
-      },
-      isSubmitting: false,
-      submitStatus: null
-    }
-  },
-  methods: {
-    async submitForm() {
-      this.isSubmitting = true;
-      this.submitStatus = null;
-      
-      try {
-        // In a real implementation, this would call your backend API
-        // For this example, we'll just simulate a successful submission
-
-        // Uncomment this to use with a real backend:
-        /*
-        const response = await axios.post('/api/contact', this.formData);
-        if (response.data.success) {
-          this.submitStatus = {
-            type: 'success',
-            message: 'Message sent successfully!'
-          };
-          this.formData = { name: '', email: '', message: '' };
-        }
-        */
-        
-        // Simulate API call delay
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        
-        // Simulate success
-        this.submitStatus = {
-          type: 'success',
-          message: 'Message sent successfully!'
-        };
-        
-        // Reset form
-        this.formData = { name: '', email: '', message: '' };
-        
-      } catch (error) {
-        console.error('Error submitting form:', error);
-        this.submitStatus = {
-          type: 'error',
-          message: 'Failed to send message. Please try again.'
-        };
-      } finally {
-        this.isSubmitting = false;
       }
     }
   }
