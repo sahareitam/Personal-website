@@ -17,6 +17,6 @@ git add -A
 git commit -m 'deploy'
 
 #https://sahareitam.github.io/Personal-website/
-git push -f https://github.com/sahareitam/portfolio-vue-express.git master:gh-pages
+git push -f https://github.com/sahareitam/Personal-website.git master:gh-pages
 
 cd -
