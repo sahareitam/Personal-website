@@ -1,103 +1,124 @@
-# Sahar Eitam Portfolio
+# Sahar Eitam Portfolio Website
 
-A personal portfolio website built with Vue.js and Express.
+A responsive personal portfolio website built with Vue.js showcasing my educational background, technical skills, work experience, and projects.
 
-## Project Overview
+## 📋 Project Overview
 
-This project is a personal portfolio website for Sahar Eitam, a software engineering student. It showcases skills, education, projects, and contact information using a modern stack:
+This single-page application (SPA) serves as my professional portfolio, featuring:
+
+- **Responsive design** that works seamlessly on mobile, tablet, and desktop
+- **Interactive sections** for home/intro, about, projects, and contact
+- **Modern UI/UX** with animations, hover effects, and smooth scrolling
+- **Component-based architecture** using Vue.js 3
+
+## 🔧 Technology Stack
 
 - **Frontend**: Vue.js 3
-- **Backend**: Node.js with Express
-- **API**: Simple contact form submission API
+- **Styling**: Custom CSS (with Tailwind-inspired utility classes)
+- **Deployment**: GitHub Pages
 
-## Project Structure
-
-The project is organized as a full-stack application with client and server directories:
+## 🚀 Project Structure
 
 ```
-portfolio-vue-express/
-├── client/                    # Vue.js frontend
-├── server/                    # Express backend
-├── package.json               # Root package.json
-└── README.md                  # Project documentation
+portfolio-website/
+├── public/               # Static files
+├── src/                  # Source code
+│   ├── assets/           # Images and component files
+│   │   └── components/   # Vue components
+│   ├── App.vue           # Main app component
+│   ├── main.js           # Application entry point
+│   └── styles.css        # Global CSS styles
+├── babel.config.js       # Babel configuration
+├── package.json          # Project dependencies
+└── vue.config.js         # Vue CLI configuration
 ```
 
-## Setup Instructions
+## 🔍 Features
+
+### 📌 Home Section
+- Professional introduction with brief overview
+- Social media links (GitHub, LinkedIn)
+- Profile image and contact options
+
+### 📌 About Section
+- Education details with GPA and relevant coursework
+- Technical skills categorized by domain
+- Work experience with detailed descriptions
+- Military service background
+- Volunteering experience
+
+### 📌 Projects Section
+- Showcase of recent development projects
+- Tech stack for each project
+- Links to GitHub repositories and live demos
+- Visual indicators for in-progress projects
+
+### 📌 Contact Section
+- Interactive contact information with copy-to-clipboard functionality
+- Social media and professional profile links
+- Clean, card-based design for easy access
+
+## 🛠️ Setup and Installation
 
 ### Prerequisites
-
 - Node.js (v14 or higher)
 - npm (v6 or higher)
 
 ### Installation
-
 1. Clone the repository:
    ```
-   git clone https://github.com/sahareitam/private-website.git
-   cd sahar-portfolio
+   git clone https://github.com/sahareitam/Personal-website.git
+   cd Personal-website
    ```
 
-2. Install all dependencies (root, client, and server):
+2. Install dependencies:
    ```
-   npm run install-all
-   ```
-
-### Development
-
-1. Run both client and server in development mode:
-   ```
-   npm run dev
+   npm install
    ```
 
-   This will start:
-   - Vue.js development server on port 8080 (client)
-   - Express backend server on port 5000 (server)
+3. Run development server:
+   ```
+   npm run serve
+   ```
+   This will start the development server at `http://localhost:8080/`
 
-2. To run only the client:
-   ```
-   npm run client
-   ```
+## 📝 Build for Production
 
-3. To run only the server:
+1. Generate production build:
    ```
-   npm run server
-   ```
-
-### Production Build
-
-1. Build the Vue.js application:
-   ```
-   cd client
    npm run build
    ```
 
-2. Start the production server:
+2. Deploy to GitHub Pages:
    ```
-   npm start
+   npm run deploy
    ```
+   This uses the `deploy.sh` script to push your built project to the gh-pages branch.
 
-   This will serve the built Vue.js app from the Express server.
+## 🔄 Development Workflow
 
-## Features
+- The project uses Vue CLI for development tooling
+- Components are organized by section functionality
+- Styles use a utility-class approach similar to Tailwind CSS
+- Navigation includes automatic highlighting of the current section
 
-- Responsive design that works on mobile, tablet, and desktop
-- Single-page application with smooth scrolling navigation
-- Sections for home/intro, about, projects, and contact
-- Contact form with backend processing capability
-- Mobile-friendly navigation menu
+## 📱 Responsive Design
 
-## Customization
+The portfolio implements a fully responsive design approach:
+- Mobile-first design principles
+- Adaptive layouts for different screen sizes
+- Hamburger menu for mobile navigation
+- Optimized images and spacing for various devices
 
-### Content
+## 🔗 Live Demo
 
-Most content can be modified by editing the data sections in the Vue components:
+The live version of this portfolio is available at:
+[https://sahareitam.github.io/Personal-website/](https://sahareitam.github.io/Personal-website/)
 
-- `HomeSection.vue` - Personal introduction
-- `AboutSection.vue` - Education and skills
-- `ProjectsSection.vue` - Project showcase
-- `ContactSection.vue` - Contact information
+## 📄 License
 
-### Styling
+This project is available for viewing and inspiration. Feel free to explore the code, but please do not use personal information or content without permission.
 
-The project uses a CSS utility approach inspired by Tailwind, with custom classes defined in `styles.css`. You can modify these styles or add new ones as needed.
+---
 
+© 2025 Sahar Eitam. All rights reserved.
