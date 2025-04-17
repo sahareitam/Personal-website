@@ -98,8 +98,7 @@
                   <span
                     v-for="skill in skillList"
                     :key="skill"
-                    class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-1 px-3 rounded-full"
-                  >
+                    class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-1 px-3 rounded-full"                  >
                     {{ skill }}
                   </span>
                 </div>
@@ -146,7 +145,7 @@
                 </li>
               </ul>
               <div class="mt-5 pt-4 border-t border-gray-200">
-                <h5 class="font-medium text-gray-900 mb-2">Key Skills Applied:</h5>
+                <h5 class="font-medium text-gray-900 mb-2">Key Skills:</h5>
                 <div class="flex flex-wrap gap-2">
                   <span class="bg-gray-200 text-gray-800 py-1 px-3 rounded-full">Operational Management</span>
                   <span class="bg-gray-200 text-gray-800 py-1 px-3 rounded-full">Client Relations</span>
@@ -184,7 +183,7 @@
                 </li>
               </ul>
               <div class="mt-5 pt-4 border-t border-gray-200">
-                <h5 class="font-medium text-gray-900 mb-2">Key Skills Gained:</h5>
+                <h5 class="font-medium text-gray-900 mb-2">Key Skills:</h5>
                 <div class="flex flex-wrap gap-2">
                   <span class="bg-gray-200 text-gray-800 py-1 px-3 rounded-full">Project Planning</span>
                   <span class="bg-gray-200 text-gray-800 py-1 px-3 rounded-full">Team Leadership</span>
@@ -227,35 +226,11 @@
             
             <div class="bg-gray-50 p-5 rounded-lg">
               <h5 class="font-medium text-gray-900 mb-4">Transferable Skills:</h5>
-              <div class="grid grid-cols-2 gap-3">
-                <div class="flex items-center gap-2 p-3 bg-gray-100 rounded-md">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-green-600 flex-shrink-0">
-                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                  </svg>
-                  <span class="text-gray-800">Leadership</span>
-                </div>
-                <div class="flex items-center gap-2 p-3 bg-gray-100 rounded-md">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-green-600 flex-shrink-0">
-                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                  </svg>
-                  <span class="text-gray-800">Team Coordination</span>
-                </div>
-                <div class="flex items-center gap-2 p-3 bg-gray-100 rounded-md">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-green-600 flex-shrink-0">
-                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                  </svg>
-                  <span class="text-gray-800">Crisis Management</span>
-                </div>
-                <div class="flex items-center gap-2 p-3 bg-gray-100 rounded-md">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-green-600 flex-shrink-0">
-                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                  </svg>
-                  <span class="text-gray-800">Strategic Planning</span>
-                </div>
+              <div class="flex flex-wrap gap-2">
+                <span class="bg-gray-200 text-gray-800 py-1 px-3 rounded-full border border-gray-300">Leadership</span>
+                <span class="bg-gray-200 text-gray-800 py-1 px-3 rounded-full border border-gray-300">Team Coordination</span>
+                <span class="bg-gray-200 text-gray-800 py-1 px-3 rounded-full border border-gray-300">Crisis Management</span>
+                <span class="bg-gray-200 text-gray-800 py-1 px-3 rounded-full border border-gray-300">Strategic Planning</span>
               </div>
             </div>
           </div>
@@ -297,17 +272,17 @@
               <div class="bg-gray-50 p-5 rounded-lg">
                 <div class="space-y-6">
                   <div>
-                    <h4 class="text-lg font-medium text-gray-900 mb-1">Mathematics Tutor</h4>
+                    <h4 class="text-lg font-bold text-gray-900 mb-1">Mathematics Tutor</h4>
                     <p class="text-gray-700 mb-3">"Perach Mathematics" Project</p>
-                    <p class="text-gray-600 bg-blue-50 p-3 rounded-lg border-l-4 border-blue-300">
+                    <p class="text-gray-600 bg-blue-100 p-3 rounded-lg border-l-6 border-blue-500">
                       Tutored high school students in 5-unit mathematics, helping them prepare for the Bagrut exams and develop strong problem-solving skills.
                     </p>
                   </div>
                   
                   <div class="pt-4 border-t border-gray-200">
-                    <h4 class="text-lg font-medium text-gray-900 mb-1">Community Support Volunteer</h4>
+                    <h4 class="text-lg font-bold text-gray-900 mb-1">Community Support Volunteer</h4>
                     <p class="text-gray-700 mb-3">Community Anchor Youth Village</p>
-                    <p class="text-gray-600 bg-blue-50 p-3 rounded-lg border-l-4 border-blue-300">
+                    <p class="text-gray-600 bg-blue-100 p-3 rounded-lg border-l-6 border-blue-500">
                       Supported at-risk youth in enrichment programs, providing guidance and mentorship to help them develop academic and life skills.
                     </p>
                   </div>
