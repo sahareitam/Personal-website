@@ -119,7 +119,7 @@ a {
 .text-red-800 { color: #991b1b; }
 
 .bg-white { background-color: #ffffff; }
-.bg-gray-50 { background-color: #f9fafb; }
+.bg-gray-50 { background-color: #f3f5f7; }
 .bg-gray-800 { background-color: #1f2937; }
 .bg-gray-900 { background-color: #111827; }
 .bg-amber-100 { background-color: #fef3c7; }
@@ -276,7 +276,8 @@ a {
 .border-blue-300 { border-color: #93c5fd; }
 .border-blue-100 { border-color: #dbeafe; }
 .border-amber-100 { border-color: #fef3c7; }
-.border-green-100 { border-color: #dcfce7; }
+.border-green-100 { border-color: #bcdbc7; }
+.border-red-100 { border-color: #f31c1c; }
 .border-l-4 { border-left-width: 4px; }
 
 /* Spacing */
@@ -319,7 +320,11 @@ a {
   outline: none !important;
 }
 .bg-gray-200 {
-  background-color: #a3a6ac; /* הצבע הסטנדרטי של gray-200 ב-Tailwind */
+  background-color: #dde0e3; /* הצבע הסטנדרטי של gray-200 ב-Tailwind */
+}
+
+.bg-green-400 {
+  background-color: #d2f1cd;
 }
 volunteering-item {
   padding: 1rem;
@@ -339,4 +344,94 @@ volunteering-item {
 
 .border-blue-500 {
   border-color: #3b82f6;
+}
+
+/* Gradient colors for project cards */
+.from-purple-500 { --tw-gradient-from: #8b5cf6; }
+.to-blue-500 { --tw-gradient-to: #3b82f6; }
+.bg-gradient-to-r { background-image: linear-gradient(to right, var(--tw-gradient-from), var(--tw-gradient-to)); }
+
+/* Transform utilities */
+.hover\:-translate-y-1:hover { transform: translateY(-0.25rem); }
+.transform { transform: translateY(var(--tw-translate-y, 0)); }
+
+/* Text colors for purple */
+.text-purple-800 { color: #5b21b6; }
+.bg-purple-100 { background-color: #ede9fe; }
+
+/* Gradient background utilities */
+.bg-gradient-to-r {
+  background-image: linear-gradient(to right, var(--tw-gradient-stops));
+}
+
+.from-purple-500 {
+  --tw-gradient-from: #8b5cf6;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(139, 92, 246, 0));
+}
+
+.to-blue-500 {
+  --tw-gradient-to: #3b82f6;
+}
+
+/* For text badges */
+.bg-purple-100 {
+  background-color: #ede9fe;
+}
+
+.text-purple-800 {
+  color: #5b21b6;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid #ccc; 
+  background-color: white;
+  font-family: Arial, sans-serif;
+}
+.icon-wrapper {
+  width: 45px;                
+  height: 45px;
+  background-color: #ebf5ff;  
+  border-radius: 50%;        
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 16px;        
+}
+
+.custom-icon {
+  width: 32px;                
+  height: 32px;
+  stroke: #2563eb;
+}
+.contact-text p {
+  margin: 2px 0; 
+}
+
+.label {
+  font-size: 14px;
+  color: #999; 
+}
+
+.value {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333; 
+}
+.contact-item {
+  padding: 24px;
+  display: flex;
+  align-items: center;
+}
+
+.top-left {
+  border-top: 1px solid #ccc;   
+  border-left: 1px solid #ccc;  
+}
+.border-top-only {
+  border-top: 1px solid #ccc; 
+}
+.border-left-only {
+  border-left: 1px solid #ccc;
 }

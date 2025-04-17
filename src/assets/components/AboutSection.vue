@@ -18,8 +18,8 @@
             </svg>
             <h3 class="text-xl font-semibold text-white">Education</h3>
           </div>
-          <div class="p-6 space-y-6">
-            <div class="bg-gray-50 rounded-lg p-5 border-l-4 border-blue-500">
+          <div class="p-6 space-y-6 ">
+            <div class="bg-gray-50 rounded-lg p-4 border-l-4 border border border-gray-300">
               <h4 class="text-2xl font-bold text-gray-900 mb-2">
                 B.Sc in Software & Information Systems Engineering
               </h4>
@@ -92,13 +92,13 @@
           </div>
           <div class="p-6">
             <div class="grid md:grid-cols-3 gap-6">
-              <div v-for="(skillList, category) in skills" :key="category" class="bg-gray-50 p-5 rounded-lg hover:shadow-md transition-shadow">
-                <h4 class="font-medium mb-4 text-gray-900 border-b border-gray-200 pb-2">{{ category }}</h4>
+              <div v-for="(skillList, category) in skills" :key="category" class="bg-gray-50 p-4 rounded-lg border border-gray-300 hover:shadow-md transition-shadow">
+                <h4 class="font-bold mb-4 text-gray-900 border-b border-gray-200 pb-2 mb-4">{{ category }}</h4>
                 <div class="flex flex-wrap gap-2">
                   <span
                     v-for="skill in skillList"
                     :key="skill"
-                    class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-1 px-3 rounded-full"                  >
+                    class="bg-green-400 text-gray-800 text-xs font-bold py-1 px-4 rounded-full border border-green-100 hover:shadow-md transition-shadow"                  >
                     {{ skill }}
                   </span>
                 </div>
@@ -118,7 +118,7 @@
           </div>
           <div class="p-6 space-y-6">
             <!-- Operations & Property Manager -->
-            <div class="bg-gray-50 p-5 rounded-lg">
+            <div class="bg-gray-50 p-4 rounded-lg border border-gray-300">
               <div class="flex flex-wrap justify-between items-start mb-3">
                 <h4 class="text-xl font-semibold text-gray-900">Operations & Property Manager</h4>
                 <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full">
@@ -145,18 +145,18 @@
                 </li>
               </ul>
               <div class="mt-5 pt-4 border-t border-gray-200">
-                <h5 class="font-medium text-gray-900 mb-2">Key Skills:</h5>
+                <h5 class="font-bold text-gray-900 mb-2">Key Skills:</h5>
                 <div class="flex flex-wrap gap-2">
-                  <span class="bg-gray-200 text-gray-800 py-1 px-3 rounded-full">Operational Management</span>
-                  <span class="bg-gray-200 text-gray-800 py-1 px-3 rounded-full">Client Relations</span>
-                  <span class="bg-gray-200 text-gray-800 py-1 px-3 rounded-full">Problem Solving</span>
-                  <span class="bg-gray-200 text-gray-800 py-1 px-3 rounded-full">Project Coordination</span>
+                  <span class="bg-gray-200 text-gray-800 text-xs font-bold py-2 px-4 rounded-full border border-gray-300 hover:shadow-md transition-shadow">Operational Management</span>
+                  <span class="bg-gray-200 text-gray-800 text-xs font-bold py-2 px-4 rounded-full border border-gray-300 hover:shadow-md transition-shadow">Client Relations</span>
+                  <span class="bg-gray-200 text-gray-800 text-xs font-bold py-2 px-4 rounded-full border border-gray-300 hover:shadow-md transition-shadow">Problem Solving</span>
+                  <span class="bg-gray-200 text-gray-800 text-xs font-bold py-2 px-4 rounded-full border border-gray-300 hover:shadow-md transition-shadow">Project Coordination</span>
                 </div>
               </div>
             </div>
             
             <!-- Site Supervisor -->
-            <div class="bg-gray-50 p-5 rounded-lg">
+            <div class="bg-gray-50 p-4 rounded-lg border border-gray-300">
               <div class="flex flex-wrap justify-between items-start mb-3">
                 <h4 class="text-xl font-semibold text-gray-900">Site Supervisor & Quantity Surveyor</h4>
                 <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full">
@@ -183,12 +183,12 @@
                 </li>
               </ul>
               <div class="mt-5 pt-4 border-t border-gray-200">
-                <h5 class="font-medium text-gray-900 mb-2">Key Skills:</h5>
+                <h5 class="font-bold text-gray-900 mb-2">Key Skills:</h5>
                 <div class="flex flex-wrap gap-2">
-                  <span class="bg-gray-200 text-gray-800 py-1 px-3 rounded-full">Project Planning</span>
-                  <span class="bg-gray-200 text-gray-800 py-1 px-3 rounded-full">Team Leadership</span>
-                  <span class="bg-gray-200 text-gray-800 py-1 px-3 rounded-full">Budget Management</span>
-                  <span class="bg-gray-200 text-gray-800 py-1 px-3 rounded-full">Client Communication</span>
+                  <span class="bg-gray-200 text-gray-800 text-xs font-bold py-2 px-4 rounded-full border border-gray-300 hover:shadow-md transition-shadow">Project Planning</span>
+                  <span class="bg-gray-200 text-gray-800 text-xs font-bold py-2 px-4 rounded-full border border-gray-300 hover:shadow-md transition-shadow">Team Leadership</span>
+                  <span class="bg-gray-200 text-gray-800 text-xs font-bold py-2 px-4 rounded-full border border-gray-300 hover:shadow-md transition-shadow">Budget Management</span>
+                  <span class="bg-gray-200 text-gray-800 text-xs font-bold py-2 px-4 rounded-full border border-gray-300 hover:shadow-md transition-shadow">Client Communication</span>
                 </div>
               </div>
             </div>
@@ -205,7 +205,7 @@
             <h3 class="text-xl font-semibold text-white">Military Service</h3>
           </div>
           <div class="p-6">
-            <div class="bg-gray-50 p-5 rounded-lg mb-4">
+            <div class="bg-gray-50 p-4 rounded-lg mb-4 border border-gray-300">
               <h4 class="text-xl font-semibold text-gray-900 mb-3">Combat Soldier and Commander</h4>
               <p class="text-blue-600 mb-4">Sayeret Givati Unit</p>
               <ul class="space-y-2 text-gray-700">
@@ -224,13 +224,13 @@
               </ul>
             </div>
             
-            <div class="bg-gray-50 p-5 rounded-lg">
-              <h5 class="font-medium text-gray-900 mb-4">Transferable Skills:</h5>
+            <div class="bg-gray-50 p-4 rounded-lg border border-gray-300">
+              <h5 class="font-bold text-gray-900 mb-4">Transferable Skills:</h5>
               <div class="flex flex-wrap gap-2">
-                <span class="bg-gray-200 text-gray-800 py-1 px-3 rounded-full border border-gray-300">Leadership</span>
-                <span class="bg-gray-200 text-gray-800 py-1 px-3 rounded-full border border-gray-300">Team Coordination</span>
-                <span class="bg-gray-200 text-gray-800 py-1 px-3 rounded-full border border-gray-300">Crisis Management</span>
-                <span class="bg-gray-200 text-gray-800 py-1 px-3 rounded-full border border-gray-300">Strategic Planning</span>
+                <span class="bg-gray-200 text-gray-800 text-xs font-bold py-2 px-4 rounded-full border border-gray-300 hover:shadow-md transition-shadow">Leadership</span>
+                <span class="bg-gray-200 text-gray-800 text-xs font-bold py-2 px-4 rounded-full border border-gray-300 hover:shadow-md transition-shadow">Team Coordination</span>
+                <span class="bg-gray-200 text-gray-800 text-xs font-bold py-2 px-4 rounded-full border border-gray-300 hover:shadow-md transition-shadow">Crisis Management</span>
+                <span class="bg-gray-200 text-gray-800 text-xs font-bold py-2 px-4 rounded-full border border-gray-300 hover:shadow-md transition-shadow">Strategic Planning</span>
               </div>
             </div>
           </div>
@@ -247,7 +247,7 @@
               <h3 class="text-xl font-semibold text-white">Professional Attributes</h3>
             </div>
             <div class="p-6">
-              <div class="bg-gray-50 p-5 rounded-lg">
+              <div class="bg-gray-50 p-4 rounded-lg border border-gray-300">
                 <div class="grid grid-cols-2 gap-4">
                   <div v-for="(skill, index) in additionalSkills" :key="index" class="flex items-center gap-2 p-3 rounded-md hover:bg-gray-100">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-green-600 flex-shrink-0">
@@ -269,7 +269,7 @@
               <h3 class="text-xl font-semibold text-white">Volunteering</h3>
             </div>
             <div class="p-6">
-              <div class="bg-gray-50 p-5 rounded-lg">
+              <div class="bg-gray-50 p-4 rounded-lg border border-gray-300">
                 <div class="space-y-6">
                   <div>
                     <h4 class="text-lg font-bold text-gray-900 mb-1">Mathematics Tutor</h4>
