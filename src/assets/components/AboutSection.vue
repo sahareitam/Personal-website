@@ -101,10 +101,10 @@
               <h4 class="font-medium">Site Supervisor & Quantity Surveyor</h4>
               <p class="text-gray-600 mb-2">Eitam Liad Construction Company</p>
               <ul class="text-gray-600 text-sm space-y-1">
-                <li>• Oversaw construction projects (budgeting, quality, timelines)</li>
-                <li>• Supervised on-site teams and coordinated with contractors</li>
-                <li>• Transitioned to part-time role focusing on quantity surveying</li>
-                <li>• Available to work 3+ days per week</li>
+                <li>Oversaw construction projects (budgeting, quality, timelines)</li>
+                <li>Supervised on-site teams and coordinated with contractors</li>
+                <li>Transitioned to part-time role focusing on quantity surveying</li>
+                <li>Available to work 3+ days per week</li>
               </ul>
             </div>
           </div>
@@ -122,9 +122,9 @@
               <h4 class="font-medium">Combat Soldier and Commander</h4>
               <p class="text-gray-600 mb-2">Sayeret Givati Unit</p>
               <ul class="text-gray-600 text-sm space-y-1">
-                <li>• Led complex operations and managed team training</li>
-                <li>• Emphasized leadership and collaboration</li>
-                <li>• Demonstrated high level of personal responsibility</li>
+                <li>Led complex operations and managed team training</li>
+                <li>Emphasized leadership and collaboration</li>
+                <li>Demonstrated high level of personal responsibility</li>
               </ul>
             </div>
           </div>

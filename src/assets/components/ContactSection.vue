@@ -78,11 +78,6 @@
       </div>
     </div>
 </section>
-
-<footer class="py-6 text-center text-gray-600">
-  <p>© 2024 Sahar Eitam. All rights reserved.</p>
-</footer>
-
 </template>
 
 <script>
