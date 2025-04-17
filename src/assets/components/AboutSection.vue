@@ -1,82 +1,104 @@
 <template>
-  <section id="about" class="py-20 px-4 bg-white">
-    <div class="max-w-5xl mx-auto">
-      <h2 class="text-3xl font-bold mb-10 text-center">About Me</h2>
+  <section id="about" class="py-20 px-4 relative">
+    <div class="absolute inset-0 bg-white opacity-90 z-0"></div>
+    <div class="max-w-6xl mx-auto relative z-10">
+      <div class="text-center mb-16">
+        <span class="inline-block px-3 py-1 text-sm font-medium rounded-full bg-blue-100 text-blue-800 mb-4">
+          About Me
+        </span>
+        <h2 class="text-4xl font-bold text-gray-900">Background & Skills</h2>
+      </div>
       
-      <div class="space-y-10">
-        <!-- Education Card -->
-        <div class="shadow-sm overflow-hidden rounded-lg border">
-          <div class="bg-gray-50 py-3 px-6 border-b flex items-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-700">
-              <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
-              <line x1="7" y1="7" x2="7.01" y2="7"></line>
+      <div class="space-y-12">
+        <!-- Education -->
+        <div class="overflow-hidden border-0 shadow-lg hover:shadow-xl rounded-lg transition-shadow duration-300">
+          <div class="bg-gradient-to-r from-gray-900 to-gray-800 py-4 px-6 flex items-center gap-3 border-b">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-white">
+              <path d="M12 1l3 5 5 .5-3.5 3 1 5-4.5-2.5L9 15l1-5-3.5-3 5-.5 3-5z" />
             </svg>
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-700">
-              <circle cx="12" cy="8" r="7"></circle>
-              <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
-            </svg>
-            <h3 class="text-xl font-semibold">Education</h3>
+            <h3 class="text-xl font-semibold text-white">Education</h3>
           </div>
-          <div class="p-6">
-            <div class="mb-6">
-              <p class="text-xl font-semibold text-blue-800">B.Sc in Software & Information Systems Engineering</p>
-              <p class="text-gray-700 font-medium">Ben-Gurion University</p>
-              <p class="text-gray-600">Currently in third year with 3 semesters remaining</p>
-              <p class="text-gray-600">GPA: 86.33 | Last semester: 90.6</p>
+          <div class="p-6 space-y-6">
+            <div class="bg-gray-50 rounded-lg p-5 border-l-4 border-blue-500">
+              <h4 class="text-2xl font-bold text-gray-900 mb-2">
+                B.Sc in Software & Information Systems Engineering
+              </h4>
+              <p class="text-lg text-blue-600 font-medium mb-2">Ben-Gurion University</p>
+              <p class="text-gray-700">Currently in third year with 3 semesters remaining</p>
+              <div class="flex flex-wrap items-center gap-3 mt-3">
+                <div class="px-3 py-1 bg-blue-100 text-blue-800 font-medium rounded-full">
+                  GPA: 86.33
+                </div>
+                <div class="px-3 py-1 bg-green-100 text-green-800 font-medium rounded-full">
+                  Last semester: 90.6
+                </div>
+              </div>
             </div>
             
-            <div class="grid md:grid-cols-2 gap-6">
+            <div class="grid md:grid-cols-2 gap-8">
               <div>
-                <h4 class="font-medium mb-3 flex items-center gap-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-amber-600">
+                <h5 class="flex items-center gap-2 text-lg font-semibold mb-4 text-amber-700">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
                     <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
                     <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
                   </svg>
                   Courses In Progress
-                </h4>
-                <ul class="space-y-2">
-                  <li v-for="(course, index) in educationCourses.inProgress" :key="index" class="text-gray-600 text-sm">
-                    {{ course }}
-                  </li>
-                </ul>
+                </h5>
+                <div class="space-y-3">
+                  <div v-for="(course, index) in educationCourses.inProgress" :key="index" class="bg-amber-50 p-4 rounded-lg border border-amber-100 hover:shadow-md transition-shadow">
+                    <span class="font-medium text-amber-900">{{ course.name }}</span>
+                    <p v-if="course.description" class="text-sm text-amber-700 mt-1">{{ course.description }}</p>
+                  </div>
+                </div>
               </div>
               
               <div>
-                <h4 class="font-medium mb-3 flex items-center gap-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-600">
+                <h5 class="flex items-center gap-2 text-lg font-semibold mb-4 text-green-700">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
                     <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                     <polyline points="22 4 12 14.01 9 11.01"></polyline>
                   </svg>
                   Relevant Completed Courses
-                </h4>
-                <ul class="space-y-2">
-                  <li v-for="(course, index) in educationCourses.completed" :key="index" class="text-gray-600 text-sm">
-                    {{ course }}
-                  </li>
-                </ul>
+                </h5>
+                <div class="space-y-3">
+                  <div v-for="(course, index) in educationCourses.completed" :key="index" class="bg-green-50 p-4 rounded-lg border border-green-100 hover:shadow-md transition-shadow">
+                    <div class="flex justify-between">
+                      <span class="font-medium text-green-900">{{ course.name }}</span>
+                      <span v-if="course.grade" class="text-green-700 font-medium">{{ course.grade }}</span>
+                    </div>
+                    <p v-if="course.description" class="text-sm text-green-700 mt-1">{{ course.description }}</p>
+                  </div>
+                </div>
               </div>
+            </div>
+            
+            <div class="mt-6 p-4 bg-blue-50 border border-blue-100 rounded-lg">
+              <h4 class="font-medium mb-3 text-blue-700">Additional Training</h4>
+              <p class="text-blue-800">
+                LangChain & LLM Development (In Progress) - RAG implementation, Vector stores and embeddings (Pinecone, FAISS)
+              </p>
             </div>
           </div>
         </div>
 
-        <!-- Skills Card -->
-        <div class="shadow-sm overflow-hidden rounded-lg border">
-          <div class="bg-gray-50 py-3 px-6 border-b flex items-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-700">
+        <!-- Skills -->
+        <div class="overflow-hidden border-0 shadow-lg hover:shadow-xl rounded-lg transition-shadow duration-300">
+          <div class="bg-gradient-to-r from-gray-900 to-gray-800 py-4 px-6 flex items-center gap-3 border-b">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-white">
               <polyline points="16 18 22 12 16 6"></polyline>
               <polyline points="8 6 2 12 8 18"></polyline>
             </svg>
-            <h3 class="text-xl font-semibold">Technical Skills</h3>
+            <h3 class="text-xl font-semibold text-white">Technical Skills</h3>
           </div>
           <div class="p-6">
-            <div class="grid md:grid-cols-2 gap-6">
-              <div v-for="(skillList, category) in skills" :key="category">
-                <h4 class="font-medium mb-3 text-gray-800">{{ category }}</h4>
+            <div class="grid md:grid-cols-3 gap-6">
+              <div v-for="(skillList, category) in skills" :key="category" class="bg-gray-50 p-5 rounded-lg hover:shadow-md transition-shadow">
+                <h4 class="font-medium mb-4 text-gray-900 border-b border-gray-200 pb-2">{{ category }}</h4>
                 <div class="flex flex-wrap gap-2">
                   <span
                     v-for="skill in skillList"
                     :key="skill"
-                    class="px-2 py-1 rounded text-sm bg-light-beige text-gray-700 border border-gray-200"
+                    class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-1 px-3 rounded-full"
                   >
                     {{ skill }}
                   </span>
@@ -86,91 +108,210 @@
           </div>
         </div>
 
-        <!-- Work & Military -->
-        <div class="grid md:grid-cols-2 gap-6">
-          <!-- Work Experience -->
-          <div class="shadow-sm overflow-hidden rounded-lg border">
-            <div class="bg-gray-50 py-3 px-6 border-b flex items-center gap-2">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-700">
-                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-              </svg>
-              <h3 class="text-xl font-semibold">Work Experience</h3>
-            </div>
-            <div class="p-6">
-              <h4 class="font-medium">Site Supervisor & Quantity Surveyor</h4>
-              <p class="text-gray-600 mb-2">Eitam Liad Construction Company</p>
-              <ul class="text-gray-600 text-sm space-y-1">
-                <li>Oversaw construction projects (budgeting, quality, timelines)</li>
-                <li>Supervised on-site teams and coordinated with contractors</li>
-                <li>Transitioned to part-time role focusing on quantity surveying</li>
-                <li>Available to work 3+ days per week</li>
-              </ul>
-            </div>
+        <!-- Work Experience -->
+        <div class="overflow-hidden border-0 shadow-lg hover:shadow-xl rounded-lg transition-shadow duration-300">
+          <div class="bg-gradient-to-r from-gray-900 to-gray-800 py-4 px-6 flex items-center gap-3 border-b">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-white">
+              <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+            </svg>
+            <h3 class="text-xl font-semibold text-white">Work Experience</h3>
           </div>
-
-          <!-- Military Service -->
-          <div class="shadow-sm overflow-hidden rounded-lg border">
-            <div class="bg-gray-50 py-3 px-6 border-b flex items-center gap-2">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-700">
-                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                <polyline points="22 4 12 14.01 9 11.01"></polyline>
-              </svg>
-              <h3 class="text-xl font-semibold">Military Service</h3>
-            </div>
-            <div class="p-6">
-              <h4 class="font-medium">Combat Soldier and Commander</h4>
-              <p class="text-gray-600 mb-2">Sayeret Givati Unit</p>
-              <ul class="text-gray-600 text-sm space-y-1">
-                <li>Led complex operations and managed team training</li>
-                <li>Emphasized leadership and collaboration</li>
-                <li>Demonstrated high level of personal responsibility</li>
+          <div class="p-6 space-y-6">
+            <!-- Operations & Property Manager -->
+            <div class="bg-gray-50 p-5 rounded-lg">
+              <div class="flex flex-wrap justify-between items-start mb-3">
+                <h4 class="text-xl font-semibold text-gray-900">Operations & Property Manager</h4>
+                <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full">
+                  Full-time
+                </span>
+              </div>
+              <p class="text-blue-600 mb-4">OurPlace | Tel Aviv, Israel</p>
+              <ul class="space-y-2 text-gray-700">
+                <li class="flex items-start gap-2">
+                  <span class="text-blue-500 mt-1">•</span>
+                  <span>Managed operational aspects of multiple residential buildings, including maintenance, contractor coordination, and budget management</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-blue-500 mt-1">•</span>
+                  <span>Served as primary point of contact for American tenants in Israel for internship programs, helping with local procedures and resolving issues</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-blue-500 mt-1">•</span>
+                  <span>Led renovation projects and ensured compliance with municipal regulations and safety standards</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-blue-500 mt-1">•</span>
+                  <span>Handled a wide range of logistical and operational challenges, often under tight deadlines</span>
+                </li>
               </ul>
+              <div class="mt-5 pt-4 border-t border-gray-200">
+                <h5 class="font-medium text-gray-900 mb-2">Key Skills Applied:</h5>
+                <div class="flex flex-wrap gap-2">
+                  <span class="bg-gray-200 text-gray-800 py-1 px-3 rounded-full">Operational Management</span>
+                  <span class="bg-gray-200 text-gray-800 py-1 px-3 rounded-full">Client Relations</span>
+                  <span class="bg-gray-200 text-gray-800 py-1 px-3 rounded-full">Problem Solving</span>
+                  <span class="bg-gray-200 text-gray-800 py-1 px-3 rounded-full">Project Coordination</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Site Supervisor -->
+            <div class="bg-gray-50 p-5 rounded-lg">
+              <div class="flex flex-wrap justify-between items-start mb-3">
+                <h4 class="text-xl font-semibold text-gray-900">Site Supervisor & Quantity Surveyor</h4>
+                <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full">
+                  Part-time
+                </span>
+              </div>
+              <p class="text-blue-600 mb-4">Eitam Liad Construction Company</p>
+              <ul class="space-y-2 text-gray-700">
+                <li class="flex items-start gap-2">
+                  <span class="text-blue-500 mt-1">•</span>
+                  <span>Oversaw construction projects (budgeting, quality, timelines)</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-blue-500 mt-1">•</span>
+                  <span>Supervised on-site teams and coordinated with contractors</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-blue-500 mt-1">•</span>
+                  <span>Transitioned to part-time role focusing on quantity surveying</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-blue-500 mt-1">•</span>
+                  <span>Available to work 3+ days per week</span>
+                </li>
+              </ul>
+              <div class="mt-5 pt-4 border-t border-gray-200">
+                <h5 class="font-medium text-gray-900 mb-2">Key Skills Gained:</h5>
+                <div class="flex flex-wrap gap-2">
+                  <span class="bg-gray-200 text-gray-800 py-1 px-3 rounded-full">Project Planning</span>
+                  <span class="bg-gray-200 text-gray-800 py-1 px-3 rounded-full">Team Leadership</span>
+                  <span class="bg-gray-200 text-gray-800 py-1 px-3 rounded-full">Budget Management</span>
+                  <span class="bg-gray-200 text-gray-800 py-1 px-3 rounded-full">Client Communication</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+
+        <!-- Military Service -->
+        <div class="overflow-hidden border-0 shadow-lg hover:shadow-xl rounded-lg transition-shadow duration-300">
+          <div class="bg-gradient-to-r from-gray-900 to-gray-800 py-4 px-6 flex items-center gap-3 border-b">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-white">
+              <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+              <line x1="7" y1="7" x2="7.01" y2="7"></line>
+            </svg>
+            <h3 class="text-xl font-semibold text-white">Military Service</h3>
+          </div>
+          <div class="p-6">
+            <div class="bg-gray-50 p-5 rounded-lg mb-4">
+              <h4 class="text-xl font-semibold text-gray-900 mb-3">Combat Soldier and Commander</h4>
+              <p class="text-blue-600 mb-4">Sayeret Givati Unit</p>
+              <ul class="space-y-2 text-gray-700">
+                <li class="flex items-start gap-2">
+                  <span class="text-blue-500 mt-1">•</span>
+                  <span>Led complex operations and managed team training</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-blue-500 mt-1">•</span>
+                  <span>Emphasized leadership and collaboration</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-blue-500 mt-1">•</span>
+                  <span>Demonstrated high level of personal responsibility</span>
+                </li>
+              </ul>
+            </div>
+            
+            <div class="bg-gray-50 p-5 rounded-lg">
+              <h5 class="font-medium text-gray-900 mb-4">Transferable Skills:</h5>
+              <div class="grid grid-cols-2 gap-3">
+                <div class="flex items-center gap-2 p-3 bg-gray-100 rounded-md">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-green-600 flex-shrink-0">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                  </svg>
+                  <span class="text-gray-800">Leadership</span>
+                </div>
+                <div class="flex items-center gap-2 p-3 bg-gray-100 rounded-md">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-green-600 flex-shrink-0">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                  </svg>
+                  <span class="text-gray-800">Team Coordination</span>
+                </div>
+                <div class="flex items-center gap-2 p-3 bg-gray-100 rounded-md">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-green-600 flex-shrink-0">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                  </svg>
+                  <span class="text-gray-800">Crisis Management</span>
+                </div>
+                <div class="flex items-center gap-2 p-3 bg-gray-100 rounded-md">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-green-600 flex-shrink-0">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                  </svg>
+                  <span class="text-gray-800">Strategic Planning</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
         <!-- Additional Skills & Volunteering -->
         <div class="grid md:grid-cols-2 gap-6">
-          <!-- Professional Attributes -->
-          <div class="shadow-sm overflow-hidden rounded-lg border">
-            <div class="bg-gray-50 py-3 px-6 border-b flex items-center gap-2">
-              <!-- אייקון מסוג Award (אפשר להחליף לאייקון SVG מתאים) -->
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path d="M12 1l3 5 5 .5-3.5 3 1 5-4.5-2.5L9 15l1-5-3.5-3 5-.5 3-5z" />
+          <div class="overflow-hidden border-0 shadow-lg hover:shadow-xl rounded-lg transition-shadow duration-300 h-full">
+            <div class="bg-gradient-to-r from-gray-900 to-gray-800 py-4 px-6 flex items-center gap-3 border-b">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-white">
+                <circle cx="12" cy="8" r="7"></circle>
+                <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
               </svg>
-              <h3 class="text-xl font-semibold">Professional Attributes</h3>
+              <h3 class="text-xl font-semibold text-white">Professional Attributes</h3>
             </div>
             <div class="p-6">
-              <div class="flex flex-wrap gap-2">
-                <span class="bg-[#f0ebe0] text-gray-700 border border-gray-300 rounded-full px-3 py-1 text-sm">Problem analysis and solution design</span>
-                <span class="bg-[#f0ebe0] text-gray-700 border border-gray-300 rounded-full px-3 py-1 text-sm">Collaborative project implementation</span>
-                <span class="bg-[#f0ebe0] text-gray-700 border border-gray-300 rounded-full px-3 py-1 text-sm">Systematic requirements gathering</span>
-                <span class="bg-[#f0ebe0] text-gray-700 border border-gray-300 rounded-full px-3 py-1 text-sm">User-focused thinking</span>
-                <span class="bg-[#f0ebe0] text-gray-700 border border-gray-300 rounded-full px-3 py-1 text-sm">Rapid self-learning capabilities</span>
-                <span class="bg-[#f0ebe0] text-gray-700 border border-gray-300 rounded-full px-3 py-1 text-sm">Strong analytical skills</span>
-                <span class="bg-[#f0ebe0] text-gray-700 border border-gray-300 rounded-full px-3 py-1 text-sm">Leadership and operational management</span>
-                <span class="bg-[#f0ebe0] text-gray-700 border border-gray-300 rounded-full px-3 py-1 text-sm">Project planning and optimization</span>
+              <div class="bg-gray-50 p-5 rounded-lg">
+                <div class="grid grid-cols-2 gap-4">
+                  <div v-for="(skill, index) in additionalSkills" :key="index" class="flex items-center gap-2 p-3 rounded-md hover:bg-gray-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-green-600 flex-shrink-0">
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                      <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                    <span class="text-gray-800">{{ skill }}</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
-          <!-- Volunteering -->
-          <div class="shadow-sm overflow-hidden rounded-lg border">
-            <div class="bg-gray-50 py-3 px-6 border-b flex items-center gap-2">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path d="M17 20h5v-2a4 4 0 0 0-3-3.87M9 20H4v-2a4 4 0 0 1 3-3.87m6-5a4 4 0 1 0-8 0 4 4 0 0 0 8 0zm6 0a4 4 0 1 0-8 0 4 4 0 0 0 8 0z" />
+          <div class="overflow-hidden border-0 shadow-lg hover:shadow-xl rounded-lg transition-shadow duration-300 h-full">
+            <div class="bg-gradient-to-r from-gray-900 to-gray-800 py-4 px-6 flex items-center gap-3 border-b">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-white">
+                <path d="M17 20h5v-2a3 3 0 0 0-3-3h-2a3 3 0 0 0-3 3v2h3zM10 18H5v-2a3 3 0 0 1 3-3h2m6-1v-2m0-4h.01M17 7a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path>
               </svg>
-              <h3 class="text-xl font-semibold">Volunteering</h3>
+              <h3 class="text-xl font-semibold text-white">Volunteering</h3>
             </div>
-            <div class="p-6 space-y-4">
-              <div>
-                <h4 class="font-medium">Mathematics Tutor</h4>
-                <p class="text-gray-600">"Perach Mathematics" Project - Tutoring high school students in 5-unit math</p>
-              </div>
-              <div>
-                <h4 class="font-medium">Community Support Volunteer</h4>
-                <p class="text-gray-600">Community Anchor Youth Village - Supporting at-risk youth in enrichment programs</p>
+            <div class="p-6">
+              <div class="bg-gray-50 p-5 rounded-lg">
+                <div class="space-y-6">
+                  <div>
+                    <h4 class="text-lg font-medium text-gray-900 mb-1">Mathematics Tutor</h4>
+                    <p class="text-gray-700 mb-3">"Perach Mathematics" Project</p>
+                    <p class="text-gray-600 bg-blue-50 p-3 rounded-lg border-l-4 border-blue-300">
+                      Tutored high school students in 5-unit mathematics, helping them prepare for the Bagrut exams and develop strong problem-solving skills.
+                    </p>
+                  </div>
+                  
+                  <div class="pt-4 border-t border-gray-200">
+                    <h4 class="text-lg font-medium text-gray-900 mb-1">Community Support Volunteer</h4>
+                    <p class="text-gray-700 mb-3">Community Anchor Youth Village</p>
+                    <p class="text-gray-600 bg-blue-50 p-3 rounded-lg border-l-4 border-blue-300">
+                      Supported at-risk youth in enrichment programs, providing guidance and mentorship to help them develop academic and life skills.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -187,40 +328,116 @@ export default {
     return {
       educationCourses: {
         inProgress: [
-          'Software Quality Engineering - Unit Testing, Integration Testing, Selenium, Cucumber, Quality Metrics, TDD',
-          'Computer and Network Security - Cryptography, Authentication, Security Protocols, Malicious Code Detection, Firewalls',
-          'Data communication - Understanding of network protocols (TCP/IP, UDP, HTTP), packet/circuit switching',
-          'Software Project Management - Agile methodologies, Project lifecycle, Team collaboration',
-          'Web development environment - RESTful APIs, Node.js, Vue.js, Docker, Cloud services (Azure)',
-          'Software Engineering Project',
-          'Analysis and decision making',
-          'Data Science Ethics'
+          {
+            name: "Software Quality Engineering",
+            description: "Unit Testing, Integration Testing, Selenium, Cucumber, Quality Metrics, TDD"
+          },
+          {
+            name: "Computer and Network Security",
+            description: "Cryptography, Authentication, Security Protocols, Malicious Code Detection, Firewalls"
+          },
+          {
+            name: "Data communication",
+            description: "Understanding of network protocols (TCP/IP, UDP, HTTP), packet/circuit switching"
+          },
+          {
+            name: "Software Project Management",
+            description: "Agile methodologies, Project lifecycle, Team collaboration"
+          },
+          {
+            name: "Web development environment",
+            description: "RESTful APIs, Node.js, Vue.js, Docker, Cloud services (Azure)"
+          },
+          {
+            name: "Software Engineering Project",
+            description: "Full-cycle software development, team collaboration, Agile practices"
+          },       
+          {
+            name: "Analysis and decision making",
+            description: "Data-driven decisions, statistical analysis, optimization techniques"
+          },
+          {
+            name: "Data Science Ethics",
+            description: "Responsible AI, Privacy, Bias mitigation, Ethical considerations in data collection"
+          }
         ],
         completed: [
-        'Artificial Intelligence (95) - Reinforcement Learning, Deep RL, Bayesian Networks',
-        'Machine Learning (89) - Neural Networks, Ensemble Methods, SVM',
-        'Operating Systems (95) - Process Management, Virtual Memory, Multi-threading',
-        'Object Oriented Programming (94) - Design Patterns, SOLID Principles',
-        'Analysis and Design of Software Systems (88) - Architecture, UML, OCL',
-        'Elements of Computing Systems (90) - CPU components, MIPS assembly, computer architecture, and hardware interfaces',
-        'Human-Computer Interface (86) - Usability, Prototyping, Eye Tracking, Accessibility',
-        'Data Structures',
-        'Algorithms',
-        'Databases',
-        'Introduction to Computer Science'
+          {
+            name: "Artificial Intelligence",
+            grade: 95,
+            description: "Reinforcement Learning, Deep RL, Bayesian Networks"
+          },
+          {
+            name: "Machine Learning",
+            grade: 89,
+            description: "Neural Networks, Ensemble Methods, SVM"
+          },
+          {
+            name: "Operating Systems",
+            grade: 95,
+            description: "Process Management, Virtual Memory, Multi-threading"
+          },
+          {
+            name: "Object Oriented Programming",
+            grade: 94,
+            description: "Design Patterns, SOLID Principles"
+          },
+          {
+            name: "Analysis and Design of Software Systems",
+            grade: 88,
+            description: "Architecture, UML, OCL"
+          },
+          {
+            name: "Elements of Computing Systems",
+            grade: 90,
+            description: "CPU components, MIPS assembly, computer architecture"
+          },
+          {
+            name: "Human-Computer Interface",
+            grade: 86,
+            description: "Usability, Prototyping, Eye Tracking, Accessibility"
+          },
+          {
+            name: "Data Structures",
+            description: "Arrays, Linked Lists, Trees, Graphs, Hash Tables"
+          },
+          {
+            name: "Algorithms",
+            description: "Sorting, Searching, Dynamic Programming, Greedy Algorithms"
+          },
+          {
+            name: "Databases",
+            description: "SQL, Normalization, Query Optimization, Transactions"
+          },
+          {
+            name: "Introduction to Computer Science",
+            description: "Programming fundamentals, Computational thinking"
+          }
         ]
       },
+
       skills: {
-        "Languages": ["Python (Primary)", "Java", "C/C++", "Go", "C#"],
-        "Frontend Development": ["JavaScript", "HTML", "CSS", "Chrome Extensions API"],
-        "Backend Development": ["REST APIs", "Flask", "Error handling", "Logging"],
+        "Languages": ["Python (Primary)", "Java", "C/C++", "Go", "C#", "JavaScript"],
+        "Frontend Development": ["JavaScript", "HTML", "CSS", "Vue.js", "Chrome Extensions API"],
+        "Backend Development": ["REST APIs", "Flask", "Node.js", "Express", "Error handling", "Logging"],
         "Cloud & DevOps": ["GCP", "App Engine", "Git", "GitHub", "Docker"],
-        "Security": ["Cryptography", "Authentication", "Malware Detection", "Network Security"],
+        "Security": ["Cryptography", "Authentication", "Malware Detection", "Network Security", "Web Security"],
         "Data & Databases": ["PostgreSQL", "Pandas", "SQL", "Data Processing"],
         "AI & ML": ["Neural Networks", "Reinforcement Learning", "LangChain", "RAG"],
-        "Scientific Programming": ["NumPy", "Pandas", "Algorithm Development"],
-        "Testing": ["Unit Testing", "Integration Testing", "PyTest", "Selenium", "TDD"]
-      }
+        "Scientific Programming": ["NumPy", "Pandas"],
+        "Testing": ["Unit Testing", "Integration Testing", "PyTest", "Selenium", "TDD", "QA Automation"]
+      },
+      additionalSkills: [
+        "Problem analysis and solution design",
+        "Collaborative project implementation",
+        "Systematic requirements gathering",
+        "User-focused thinking",
+        "Rapid self-learning capabilities",
+        "Strong analytical skills",
+        "Leadership and operational management",
+        "Project planning and optimization",
+        "Full-stack development"
+      ]
     }
   }
 }
