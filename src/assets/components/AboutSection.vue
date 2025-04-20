@@ -45,9 +45,21 @@
                   Courses In Progress
                 </h5>
                 <div class="space-y-3">
-                  <div v-for="(course, index) in educationCourses.inProgress" :key="index" class="bg-amber-50 p-4 rounded-lg border border-amber-100 hover:shadow-md transition-shadow">
-                    <span class="font-medium text-amber-900">{{ course.name }}</span>
-                    <p v-if="course.description" class="text-sm text-amber-700 mt-1">{{ course.description }}</p>
+                  <div v-for="(course, index) in educationCourses.inProgress" :key="index" 
+                       class="bg-amber-50 p-4 rounded-lg border border-amber-100 hover:shadow-md transition-shadow">
+                    <div @click="toggleCourse(course)" :class="{'cursor-pointer': isMobile}">
+                      <div class="flex justify-between">
+                        <span class="font-medium text-amber-900">{{ course.name }}</span>
+                        <svg v-if="isMobile" xmlns="http://www.w3.org/2000/svg" 
+                             class="w-4 h-4 ml-2 transition-transform text-amber-700"
+                             :class="{'transform rotate-180': course.isOpen}">
+                          <polyline points="6 9 12 15 18 9" fill="none" stroke="currentColor" stroke-width="2"></polyline>
+                        </svg>
+                      </div>
+                      <p v-if="course.description" 
+                         v-show="!isMobile || course.isOpen" 
+                         class="text-sm text-amber-700 mt-1">{{ course.description }}</p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -61,12 +73,24 @@
                   Relevant Completed Courses
                 </h5>
                 <div class="space-y-3">
-                  <div v-for="(course, index) in educationCourses.completed" :key="index" class="bg-green-50 p-4 rounded-lg border border-green-100 hover:shadow-md transition-shadow">
-                    <div class="flex justify-between">
-                      <span class="font-medium text-green-900">{{ course.name }}</span>
-                      <span v-if="course.grade" class="text-green-700 font-medium">{{ course.grade }}</span>
+                  <div v-for="(course, index) in educationCourses.completed" :key="index" 
+                       class="bg-green-50 p-4 rounded-lg border border-green-100 hover:shadow-md transition-shadow">
+                    <div @click="toggleCourse(course)" :class="{'cursor-pointer': isMobile}">
+                      <div class="flex justify-between">
+                        <span class="font-medium text-green-900">{{ course.name }}</span>
+                        <div class="flex items-center">
+                          <span v-if="course.grade" class="text-green-700 font-medium">{{ course.grade }}</span>
+                          <svg v-if="isMobile" xmlns="http://www.w3.org/2000/svg" 
+                               class="w-4 h-4 ml-2 transition-transform"
+                               :class="{'transform rotate-180': course.isOpen}">
+                            <polyline points="6 9 12 15 18 9" fill="none" stroke="currentColor" stroke-width="2"></polyline>
+                          </svg>
+                        </div>
+                      </div>
+                      <p v-if="course.description" 
+                         v-show="!isMobile || course.isOpen" 
+                         class="text-sm text-green-700 mt-1">{{ course.description }}</p>
                     </div>
-                    <p v-if="course.description" class="text-sm text-green-700 mt-1">{{ course.description }}</p>
                   </div>
                 </div>
               </div>
@@ -92,13 +116,14 @@
           </div>
           <div class="p-6">
             <div class="grid md:grid-cols-3 gap-6">
-              <div v-for="(skillList, category) in skills" :key="category" class="bg-gray-50 p-4 rounded-lg border border-gray-300 hover:shadow-md transition-shadow">
+              <div v-for="(skillList, category) in skills" :key="category" 
+                   class="bg-gray-50 p-4 rounded-lg border border-gray-300 hover:shadow-md transition-shadow skills">
                 <h4 class="font-bold mb-4 text-gray-900 border-b border-gray-200 pb-2 mb-4">{{ category }}</h4>
-                <div class="flex flex-wrap gap-2">
+                <div class="flex flex-wrap gap-2" :class="{'skills-container': isMobile}">
                   <span
                     v-for="skill in skillList"
                     :key="skill"
-                    class="bg-green-400 text-gray-800 text-xs font-bold py-1 px-4 rounded-full border border-green-100 hover:shadow-md transition-shadow"                  >
+                    class="bg-green-400 text-gray-800 text-xs font-bold py-1 px-4 rounded-full border border-green-100 hover:shadow-md transition-shadow">
                     {{ skill }}
                   </span>
                 </div>
@@ -301,92 +326,112 @@ export default {
   name: 'AboutSection',
   data() {
     return {
+      isMobile: false,
       educationCourses: {
         inProgress: [
           {
             name: "Software Quality Engineering",
-            description: "Unit Testing, Integration Testing, Selenium, Cucumber, Quality Metrics, TDD"
+            description: "Unit Testing, Integration Testing, Selenium, Cucumber, Quality Metrics, TDD",
+            isOpen: false
           },
           {
             name: "Computer and Network Security",
-            description: "Cryptography, Authentication, Security Protocols, Malicious Code Detection, Firewalls"
+            description: "Cryptography, Authentication, Security Protocols, Malicious Code Detection, Firewalls",
+            isOpen: false
           },
           {
             name: "Data communication",
-            description: "Understanding of network protocols (TCP/IP, UDP, HTTP), packet/circuit switching"
+            description: "Understanding of network protocols (TCP/IP, UDP, HTTP), packet/circuit switching",
+            isOpen: false
           },
           {
             name: "Software Project Management",
-            description: "Agile methodologies, Project lifecycle, Team collaboration"
+            description: "Agile methodologies, Project lifecycle, Team collaboration",
+            isOpen: false
           },
           {
             name: "Web development environment",
-            description: "RESTful APIs, Node.js, Vue.js, Docker, Cloud services (Azure)"
+            description: "RESTful APIs, Node.js, Vue.js, Docker, Cloud services (Azure)",
+            isOpen: false
           },
           {
             name: "Software Engineering Project",
-            description: "Full-cycle software development, team collaboration, Agile practices"
+            description: "Full-cycle software development, team collaboration, Agile practices",
+            isOpen: false
           },       
           {
             name: "Analysis and decision making",
-            description: "Data-driven decisions, statistical analysis, optimization techniques"
+            description: "Data-driven decisions, statistical analysis, optimization techniques",
+            isOpen: false
           },
           {
             name: "Data Science Ethics",
-            description: "Responsible AI, Privacy, Bias mitigation, Ethical considerations in data collection"
+            description: "Responsible AI, Privacy, Bias mitigation, Ethical considerations in data collection",
+            isOpen: false
           }
         ],
         completed: [
           {
             name: "Artificial Intelligence",
             grade: 95,
-            description: "Reinforcement Learning, Deep RL, Bayesian Networks"
+            description: "Reinforcement Learning, Deep RL, Bayesian Networks",
+            isOpen: false
           },
           {
             name: "Machine Learning",
             grade: 89,
-            description: "Neural Networks, Ensemble Methods, SVM"
+            description: "Neural Networks, Ensemble Methods, SVM",
+            isOpen: false
           },
           {
             name: "Operating Systems",
             grade: 95,
-            description: "Process Management, Virtual Memory, Multi-threading"
+            description: "Process Management, Virtual Memory, Multi-threading",
+            isOpen: false
           },
           {
             name: "Object Oriented Programming",
             grade: 94,
-            description: "Design Patterns, SOLID Principles"
+            description: "Design Patterns, SOLID Principles",
+            isOpen: false
           },
           {
             name: "Analysis and Design of Software Systems",
             grade: 88,
-            description: "Architecture, UML, OCL"
+            description: "Architecture, UML, OCL",
+            isOpen: false
           },
           {
             name: "Elements of Computing Systems",
             grade: 90,
-            description: "CPU components, MIPS assembly, computer architecture"
+            description: "CPU components, MIPS assembly, computer architecture",
+            isOpen: false
           },
           {
             name: "Human-Computer Interface",
             grade: 86,
-            description: "Usability, Prototyping, Eye Tracking, Accessibility"
+            description: "Usability, Prototyping, Eye Tracking, Accessibility",
+            isOpen: false
           },
           {
             name: "Data Structures",
-            description: "Arrays, Linked Lists, Trees, Graphs, Hash Tables"
+            description: "Arrays, Linked Lists, Trees, Graphs, Hash Tables",
+            isOpen: false
           },
           {
             name: "Algorithms",
-            description: "Sorting, Searching, Dynamic Programming, Greedy Algorithms"
+            description: "Sorting, Searching, Dynamic Programming, Greedy Algorithms",
+            isOpen: false
           },
           {
             name: "Databases",
-            description: "SQL, Normalization, Query Optimization, Transactions"
+            description: "SQL, Normalization, Query Optimization, Transactions",
+            isOpen: false
           },
           {
             name: "Introduction to Computer Science",
-            description: "Programming fundamentals, Computational thinking"
+            description: "Programming fundamentals, Computational thinking",
+            isOpen: false
           }
         ]
       },
@@ -414,6 +459,28 @@ export default {
         "Full-stack development"
       ]
     }
+  },
+  mounted() {
+    // Check if on mobile
+    this.checkIfMobile();
+    // Listen for screen size changes
+    window.addEventListener('resize', this.checkIfMobile);
+  },
+  beforeUnmount() {
+    // Remove listener when component is destroyed
+    window.removeEventListener('resize', this.checkIfMobile);
+  },
+  methods: {
+    checkIfMobile() {
+      this.isMobile = window.innerWidth <= 768;
+    },
+    toggleCourse(course) {
+      if (this.isMobile) {
+        course.isOpen = !course.isOpen;
+      }
+    }
   }
 }
 </script>
+
+

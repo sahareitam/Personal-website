@@ -435,3 +435,422 @@ volunteering-item {
 .border-left-only {
   border-left: 1px solid #ccc;
 }
+
+/* === Mobile Responsiveness Improvements === */
+
+/* === Basic Adaptations === */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%; /* Prevent auto text sizing on iPhone */
+  touch-action: manipulation; /* Improve touch performance */
+}
+
+body {
+  overflow-x: hidden; /* Prevent horizontal scroll */
+  padding-bottom: env(safe-area-inset-bottom); /* Support for notch devices */
+  padding-top: env(safe-area-inset-top);
+}
+
+/* === Improve buttons and links for touch === */
+button, a, [role="button"] {
+  min-height: 44px; /* Minimum height for tap areas per Apple guidelines */
+  min-width: 44px; /* Minimum width for tap areas */
+  font-size: 16px; /* Prevent auto-zoom on phones */
+}
+
+/* === Prevent content from overflowing === */
+img, svg, video, canvas, iframe, object {
+  max-width: 100%;
+  height: auto;
+}
+
+/* === Navbar Adjustments === */
+@media (max-width: 767px) {
+  nav button {
+    padding: 10px 15px; /* Larger buttons in mobile menu */
+  }
+  
+  /* Improved mobile menu */
+  nav .md\:hidden button {
+    margin: 5px 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* === Home Section Adjustments === */
+@media (max-width: 768px) {
+  #home {
+    padding-top: 100px; /* Additional spacing at the top for mobile */
+    min-height: auto; /* Allow section to be content height instead of 100vh */
+    padding-bottom: 60px;
+  }
+  
+  #home h1 {
+    font-size: 2.5rem; /* Smaller heading on mobile */
+    line-height: 1.2;
+  }
+  
+  #home .w-48, #home .h-48 {
+    width: 180px; /* Adjusted profile image size */
+    height: 180px;
+    margin: 0 auto 20px auto;
+  }
+  
+  /* Adjust action buttons */
+  #home .flex.flex-wrap.justify-center button,
+  #home .flex.flex-wrap.justify-center a {
+    margin: 5px;
+    flex-grow: 1;
+    justify-content: center;
+  }
+}
+
+/* === About Section Adjustments === */
+@media (max-width: 768px) {
+  #about .grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  #about .md\:grid-cols-2,
+  #about .md\:grid-cols-3 {
+    grid-template-columns: 1fr; /* Single column instead of grid on mobile */
+  }
+  
+  /* Additional spacing between categories */
+  #about .space-y-12 > * {
+    margin-top: 30px;
+  }
+  
+  /* Adjust text sizes */
+  #about h3 {
+    font-size: 1.25rem;
+  }
+  
+  #about h4 {
+    font-size: 1.1rem;
+  }
+  
+  /* Improve readability */
+  #about .bg-gray-50 {
+    padding: 15px; /* Less padding on mobile */
+  }
+  
+  /* Adjust tag groups */
+  #about .flex-wrap {
+    justify-content: flex-start;
+  }
+  
+  #about .flex-wrap span {
+    margin: 3px;
+    font-size: 0.7rem;
+    white-space: nowrap;
+  }
+}
+
+/* === Projects Section Adjustments === */
+@media (max-width: 768px) {
+  #projects .grid {
+    grid-template-columns: 1fr; /* Single column instead of two on mobile */
+  }
+  
+  #projects .p-6 {
+    padding: 15px; /* Less padding on mobile */
+  }
+  
+  /* More space for action buttons */
+  #projects .flex.items-center.gap-4 {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  #projects .flex.items-center.gap-4 a {
+    margin: 5px;
+    padding: 8px 12px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Fix long text overflow */
+  #projects h3, #projects p {
+    word-break: break-word;
+    hyphens: auto;
+  }
+}
+
+/* === Contact Section Adjustments === */
+@media (max-width: 640px) {
+  /* Fix card layout on mobile */
+  .contact-grid {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .contact-item {
+    width: 100%;
+    box-sizing: border-box;
+    border-left: none !important;
+    border-right: none !important;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .contact-item:last-child {
+    border-bottom: none;
+  }
+  
+  /* Enlarge tap areas */
+  .contact-item {
+    padding: 20px 15px;
+    min-height: 60px;
+  }
+  
+  /* Fix icon sizes */
+  .icon-wrapper {
+    min-width: 40px;
+    min-height: 40px;
+  }
+  
+  /* Fix copy to clipboard notification */
+  .copy-notification {
+    bottom: -25px;
+  }
+}
+
+/* === Additional adjustments for smaller phones === */
+@media (max-width: 360px) {
+  /* Adjust font sizes */
+  html {
+    font-size: 14px; /* Smaller base font size */
+  }
+  
+  /* Further reduce main headings */
+  h1 {
+    font-size: 2rem !important;
+  }
+  
+  h2 {
+    font-size: 1.75rem !important;
+  }
+  
+  /* Reduced margins to conserve space */
+  section {
+    padding-top: 40px !important;
+    padding-bottom: 40px !important;
+  }
+  
+  .px-4 {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+  
+  /* Alignment for very small screens */
+  .text-center {
+    text-align: left;
+  }
+  
+  /* Remove margins for maximum screen utilization */
+  .container {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+}
+
+/* === Support for landscape mode === */
+@media (max-height: 500px) and (orientation: landscape) {
+  section {
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+  }
+  
+  #home {
+    min-height: auto;
+    padding-top: 80px;
+  }
+  
+  /* Reorganize home section in landscape mode */
+  #home .flex-col.md\:flex-row {
+    flex-direction: row !important;
+  }
+  
+  #home .w-48, #home .h-48 {
+    width: 120px;
+    height: 120px;
+  }
+  
+  /* Adjust text sizes in landscape mode */
+  h1 {
+    font-size: 2.2rem !important;
+  }
+  
+  h2 {
+    font-size: 1.5rem !important;
+  }
+  
+  p {
+    margin-bottom: 0.5rem !important;
+  }
+  
+  /* Adjust menu size in landscape mode */
+  nav .md\:hidden {
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+}
+
+/* === Support for accessibility text enlargement === */
+@media screen and (max-width: 768px) and (min-resolution: 1dppx) {
+  html {
+    font-size: calc(16px + 0.5vw); /* Increase base font size */
+  }
+  
+  /* Prevent layout breaks with large fonts */
+  .overflow-hidden {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  }
+  
+  /* Enlarge containers */
+  .container {
+    max-width: 100%;
+    width: 100%;
+  }
+  
+  /* Prevent horizontal overflow */
+  .px-4, .px-6, .p-6, .p-4 {
+    padding-left: max(16px, 4vw) !important;
+    padding-right: max(16px, 4vw) !important;
+  }
+  
+  /* Enlarge tap areas for accessibility */
+  button, a, input, select, [role="button"] {
+    min-height: 48px;
+  }
+}
+
+/* === Fix conflicts === */
+/* In case of collisions between rules */
+@media (max-width: 768px) {
+  .md\:flex {
+    display: none !important;
+  }
+  
+  .md\:hidden {
+    display: block !important;
+  }
+  
+  .hidden.md\:flex {
+    display: none !important;
+  }
+  
+  .md\:w-2\/3 {
+    width: 100% !important;
+  }
+  
+  .md\:text-left {
+    text-align: center !important;
+  }
+  
+  .justify-center.md\:justify-start {
+    justify-content: center !important;
+  }
+  
+  /* Specific fix for home section */
+  #home .md\:text-left {
+    text-align: center !important;
+  }
+  
+  #home .md\:justify-start {
+    justify-content: center !important;
+  }
+}
+
+/* === Support for larger mobile displays === */
+@media (min-width: 540px) and (max-width: 767px) {
+  /* Adjustments for small tablets and large mobiles */
+  #projects .grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 20px;
+  }
+  
+  /* Increase spacing */
+  .py-20 {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+  
+  /* Improve menu display */
+  nav .md\:hidden button {
+    font-size: 18px;
+  }
+/* Accordion animation */
+.transition-transform {
+  transition: transform 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  /* Style for course items */
+  .bg-green-50, .bg-amber-50 {
+    padding: 12px !important;
+  }
+  
+  /* Margin below accordion expanded content */
+  .text-sm.text-green-700.mt-1, 
+  .text-sm.text-amber-700.mt-1 {
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(0,0,0,0.05);
+  }
+  
+  /* Make skills tags container horizontally scrollable */
+  .skills-container {
+    display: flex;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    margin-bottom: 5px;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+  }
+  
+  .skills-container::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
+  }
+  
+  .skills-container span {
+    flex-shrink: 0;
+    margin-right: 8px;
+    white-space: nowrap;
+  }
+  
+  /* Responsive grid adjustments */
+  .grid {
+    gap: 12px !important;
+  }
+  
+  /* Improved touch targets */
+  .cursor-pointer {
+    min-height: 44px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  /* Improve readability on mobile */
+  .text-gray-700, .text-amber-700, .text-green-700 {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+}
+
+/* Animation for rotate */
+.transform.rotate-180 {
+  transform: rotate(180deg);
+}
+
+}
