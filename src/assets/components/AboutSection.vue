@@ -12,11 +12,10 @@
       <div class="space-y-12">
         <!-- Education -->
         <div class="overflow-hidden border-0 shadow-lg hover:shadow-xl rounded-lg transition-shadow duration-300">
-          <div class="bg-gradient-to-r from-gray-900 to-gray-800 py-4 px-6 flex items-center gap-3 border-b">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-white">
-              <path d="M12 1l3 5 5 .5-3.5 3 1 5-4.5-2.5L9 15l1-5-3.5-3 5-.5 3-5z" />
-            </svg>
-            <h3 class="text-xl font-semibold text-white">Education</h3>
+          <div class="bg-gradient-to-r from-gray-900 to-gray-800 py-4 px-6 border-b">
+            <div class="flex justify-center items-center gap-3">
+              <h3 class="text-xl font-semibold text-black">Education</h3>
+            </div>
           </div>
           <div class="p-6 space-y-6 ">
             <div class="bg-gray-50 rounded-lg p-4 border-l-4 border border border-gray-300">
@@ -107,21 +106,32 @@
 
         <!-- Skills -->
         <div class="overflow-hidden border-0 shadow-lg hover:shadow-xl rounded-lg transition-shadow duration-300">
-          <div class="bg-gradient-to-r from-gray-900 to-gray-800 py-4 px-6 flex items-center gap-3 border-b">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-white">
-              <polyline points="16 18 22 12 16 6"></polyline>
-              <polyline points="8 6 2 12 8 18"></polyline>
-            </svg>
-            <h3 class="text-xl font-semibold text-white">Technical Skills</h3>
+          <div class="bg-gradient-to-r from-gray-900 to-gray-800 py-4 px-6 border-b">
+            <div class="flex justify-center items-center gap-3">
+              <h3 class="text-xl font-semibold text-black">Technical Skills</h3>
+            </div>
           </div>
           <div class="p-6">
             <div class="grid md:grid-cols-3 gap-6">
-              <div v-for="(skillList, category) in skills" :key="category" 
-                   class="bg-gray-50 p-4 rounded-lg border border-gray-300 hover:shadow-md transition-shadow skills">
-                <h4 class="font-bold mb-4 text-gray-900 border-b border-gray-200 pb-2 mb-4">{{ category }}</h4>
-                <div class="flex flex-wrap gap-2" :class="{'skills-container': isMobile}">
+              <div v-for="category in skillsCategories" :key="category.name" 
+                  class="bg-gray-50 p-4 rounded-lg border border-gray-300 hover:shadow-md transition-shadow skills">
+                
+                <!-- title in mobile-->
+                <h4 @click="toggleSkillCategory(category)" 
+                    class="font-bold mb-4 text-gray-900 border-b border-gray-200 pb-2 mb-4 flex justify-between items-center"
+                    :class="{'cursor-pointer': isMobile}">
+                  {{ category.name }}
+                  <svg v-if="isMobile" xmlns="http://www.w3.org/2000/svg" 
+                      class="w-4 h-4 ml-2 transition-transform text-gray-700"
+                      :class="{'transform rotate-180': category.isOpen}">
+                    <polyline points="6 9 12 15 18 9" fill="none" stroke="currentColor" stroke-width="2"></polyline>
+                  </svg>
+                </h4>
+                
+                <!-- tags of skill-->
+                <div class="flex flex-wrap gap-2" v-show="!isMobile || category.isOpen">
                   <span
-                    v-for="skill in skillList"
+                    v-for="skill in category.skills"
                     :key="skill"
                     class="bg-green-400 text-gray-800 text-xs font-bold py-1 px-4 rounded-full border border-green-100 hover:shadow-md transition-shadow">
                     {{ skill }}
@@ -134,86 +144,49 @@
 
         <!-- Work Experience -->
         <div class="overflow-hidden border-0 shadow-lg hover:shadow-xl rounded-lg transition-shadow duration-300">
-          <div class="bg-gradient-to-r from-gray-900 to-gray-800 py-4 px-6 flex items-center gap-3 border-b">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-white">
-              <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-            </svg>
-            <h3 class="text-xl font-semibold text-white">Work Experience</h3>
+          <div class="bg-gradient-to-r from-gray-900 to-gray-800 py-4 px-6 border-b">
+            <div class="flex justify-center items-center gap-3">
+              <h3 class="text-xl font-semibold text-black">Work Experience</h3>
+            </div>
           </div>
           <div class="p-6 space-y-6">
-            <!-- Operations & Property Manager -->
-            <div class="bg-gray-50 p-4 rounded-lg border border-gray-300">
+            <!-- Experience Items -->
+            <div v-for="(job, index) in workExperience" :key="index" 
+                class="bg-gray-50 p-4 rounded-lg border border-gray-300">
               <div class="flex flex-wrap justify-between items-start mb-3">
-                <h4 class="text-xl font-semibold text-gray-900">Operations & Property Manager</h4>
-                <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full">
-                  Full-time
+                <!-- title for mobile-->
+                <h4 @click="toggleWorkExperience(job)" 
+                    class="text-xl font-semibold text-gray-900 flex justify-between items-center w-full"
+                    :class="{'cursor-pointer': isMobile}">
+                  {{ job.title }}
+                  <svg v-if="isMobile" xmlns="http://www.w3.org/2000/svg" 
+                      class="w-4 h-4 ml-2 transition-transform text-gray-700"
+                      :class="{'transform rotate-180': job.isOpen}">
+                    <polyline points="6 9 12 15 18 9" fill="none" stroke="currentColor" stroke-width="2"></polyline>
+                  </svg>
+                </h4>
+                <span v-show="!isMobile || job.isOpen" class="px-2 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full">
+                  {{ job.type }}
                 </span>
               </div>
-              <p class="text-blue-600 mb-4">OurPlace | Tel Aviv, Israel</p>
-              <ul class="space-y-2 text-gray-700">
-                <li class="flex items-start gap-2">
-                  <span class="text-blue-500 mt-1">•</span>
-                  <span>Managed operational aspects of multiple residential buildings, including maintenance, contractor coordination, and budget management</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-blue-500 mt-1">•</span>
-                  <span>Served as primary point of contact for American tenants in Israel for internship programs, helping with local procedures and resolving issues</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-blue-500 mt-1">•</span>
-                  <span>Led renovation projects and ensured compliance with municipal regulations and safety standards</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-blue-500 mt-1">•</span>
-                  <span>Handled a wide range of logistical and operational challenges, often under tight deadlines</span>
-                </li>
-              </ul>
-              <div class="mt-5 pt-4 border-t border-gray-200">
-                <h5 class="font-bold text-gray-900 mb-2">Key Skills:</h5>
-                <div class="flex flex-wrap gap-2">
-                  <span class="bg-gray-200 text-gray-800 text-xs font-bold py-2 px-4 rounded-full border border-gray-300 hover:shadow-md transition-shadow">Operational Management</span>
-                  <span class="bg-gray-200 text-gray-800 text-xs font-bold py-2 px-4 rounded-full border border-gray-300 hover:shadow-md transition-shadow">Client Relations</span>
-                  <span class="bg-gray-200 text-gray-800 text-xs font-bold py-2 px-4 rounded-full border border-gray-300 hover:shadow-md transition-shadow">Problem Solving</span>
-                  <span class="bg-gray-200 text-gray-800 text-xs font-bold py-2 px-4 rounded-full border border-gray-300 hover:shadow-md transition-shadow">Project Coordination</span>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Site Supervisor -->
-            <div class="bg-gray-50 p-4 rounded-lg border border-gray-300">
-              <div class="flex flex-wrap justify-between items-start mb-3">
-                <h4 class="text-xl font-semibold text-gray-900">Site Supervisor & Quantity Surveyor</h4>
-                <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full">
-                  Part-time
-                </span>
-              </div>
-              <p class="text-blue-600 mb-4">Eitam Liad Construction Company</p>
-              <ul class="space-y-2 text-gray-700">
-                <li class="flex items-start gap-2">
-                  <span class="text-blue-500 mt-1">•</span>
-                  <span>Oversaw construction projects (budgeting, quality, timelines)</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-blue-500 mt-1">•</span>
-                  <span>Supervised on-site teams and coordinated with contractors</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-blue-500 mt-1">•</span>
-                  <span>Transitioned to part-time role focusing on quantity surveying</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-blue-500 mt-1">•</span>
-                  <span>Available to work 3+ days per week</span>
-                </li>
-              </ul>
-              <div class="mt-5 pt-4 border-t border-gray-200">
-                <h5 class="font-bold text-gray-900 mb-2">Key Skills:</h5>
-                <div class="flex flex-wrap gap-2">
-                  <span class="bg-gray-200 text-gray-800 text-xs font-bold py-2 px-4 rounded-full border border-gray-300 hover:shadow-md transition-shadow">Project Planning</span>
-                  <span class="bg-gray-200 text-gray-800 text-xs font-bold py-2 px-4 rounded-full border border-gray-300 hover:shadow-md transition-shadow">Team Leadership</span>
-                  <span class="bg-gray-200 text-gray-800 text-xs font-bold py-2 px-4 rounded-full border border-gray-300 hover:shadow-md transition-shadow">Budget Management</span>
-                  <span class="bg-gray-200 text-gray-800 text-xs font-bold py-2 px-4 rounded-full border border-gray-300 hover:shadow-md transition-shadow">Client Communication</span>
+              
+              <!--hide content in mobile-->
+              <div v-show="!isMobile || job.isOpen">
+                <p class="text-blue-600 mb-4">{{ job.company }}{{ job.location ? ' | ' + job.location : '' }}</p>
+                <ul class="space-y-2 text-gray-700">
+                  <li v-for="(item, i) in job.responsibilities" :key="i" class="flex items-start gap-2">
+                    <span class="text-blue-500 mt-1">•</span>
+                    <span>{{ item }}</span>
+                  </li>
+                </ul>
+                <div class="mt-5 pt-4 border-t border-gray-200">
+                  <h5 class="font-bold text-gray-900 mb-2">Key Skills:</h5>
+                  <div class="flex flex-wrap gap-2">
+                    <span v-for="(skill, i) in job.skills" :key="i"
+                        class="bg-gray-200 text-gray-800 text-xs font-bold py-2 px-4 rounded-full border border-gray-300 hover:shadow-md transition-shadow">
+                      {{ skill }}
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -222,94 +195,87 @@
 
         <!-- Military Service -->
         <div class="overflow-hidden border-0 shadow-lg hover:shadow-xl rounded-lg transition-shadow duration-300">
-          <div class="bg-gradient-to-r from-gray-900 to-gray-800 py-4 px-6 flex items-center gap-3 border-b">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-white">
-              <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
-              <line x1="7" y1="7" x2="7.01" y2="7"></line>
-            </svg>
-            <h3 class="text-xl font-semibold text-white">Military Service</h3>
+          <div class="bg-gradient-to-r from-gray-900 to-gray-800 py-4 px-6 border-b">
+            <div class="flex justify-center items-center gap-3">
+              <h3 class="text-xl font-semibold text-black">Military Service</h3>
+            </div>
           </div>
           <div class="p-6">
-            <div class="bg-gray-50 p-4 rounded-lg mb-4 border border-gray-300">
-              <h4 class="text-xl font-semibold text-gray-900 mb-3">Combat Soldier and Commander</h4>
-              <p class="text-blue-600 mb-4">Sayeret Givati Unit</p>
-              <ul class="space-y-2 text-gray-700">
-                <li class="flex items-start gap-2">
-                  <span class="text-blue-500 mt-1">•</span>
-                  <span>Led complex operations and managed team training</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-blue-500 mt-1">•</span>
-                  <span>Emphasized leadership and collaboration</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-blue-500 mt-1">•</span>
-                  <span>Demonstrated high level of personal responsibility</span>
-                </li>
-              </ul>
+            <div v-for="(service, index) in militaryService" :key="index"
+                class="bg-gray-50 p-4 rounded-lg mb-4 border border-gray-300">
+              <h4 @click="toggleMilitaryService(service)"
+                  class="text-xl font-semibold text-gray-900 mb-3 flex justify-between items-center"
+                  :class="{'cursor-pointer': isMobile}">
+                {{ service.title }}
+                <svg v-if="isMobile" xmlns="http://www.w3.org/2000/svg" 
+                    class="w-4 h-4 ml-2 transition-transform text-gray-700"
+                    :class="{'transform rotate-180': service.isOpen}">
+                  <polyline points="6 9 12 15 18 9" fill="none" stroke="currentColor" stroke-width="2"></polyline>
+                </svg>
+              </h4>
+              
+              <div v-show="!isMobile || service.isOpen">
+                <p class="text-blue-600 mb-4">{{ service.unit }}</p>
+                <ul class="space-y-2 text-gray-700">
+                  <li v-for="(duty, i) in service.duties" :key="i" class="flex items-start gap-2">
+                    <span class="text-blue-500 mt-1">•</span>
+                    <span>{{ duty }}</span>
+                  </li>
+                </ul>
+              </div>
             </div>
             
             <div class="bg-gray-50 p-4 rounded-lg border border-gray-300">
-              <h5 class="font-bold text-gray-900 mb-4">Transferable Skills:</h5>
-              <div class="flex flex-wrap gap-2">
-                <span class="bg-gray-200 text-gray-800 text-xs font-bold py-2 px-4 rounded-full border border-gray-300 hover:shadow-md transition-shadow">Leadership</span>
-                <span class="bg-gray-200 text-gray-800 text-xs font-bold py-2 px-4 rounded-full border border-gray-300 hover:shadow-md transition-shadow">Team Coordination</span>
-                <span class="bg-gray-200 text-gray-800 text-xs font-bold py-2 px-4 rounded-full border border-gray-300 hover:shadow-md transition-shadow">Crisis Management</span>
-                <span class="bg-gray-200 text-gray-800 text-xs font-bold py-2 px-4 rounded-full border border-gray-300 hover:shadow-md transition-shadow">Strategic Planning</span>
+              <h5 @click="toggleMilitarySkills"
+                  class="font-bold text-gray-900 mb-4 flex justify-between items-center"
+                  :class="{'cursor-pointer': isMobile}">
+                Transferable Skills:
+                <svg v-if="isMobile" xmlns="http://www.w3.org/2000/svg" 
+                    class="w-4 h-4 ml-2 transition-transform text-gray-700"
+                    :class="{'transform rotate-180': militarySkillsOpen}">
+                  <polyline points="6 9 12 15 18 9" fill="none" stroke="currentColor" stroke-width="2"></polyline>
+                </svg>
+              </h5>
+              
+              <div v-show="!isMobile || militarySkillsOpen" class="flex flex-wrap gap-2">
+                <span v-for="(skill, i) in militarySkills" :key="i"
+                    class="bg-gray-200 text-gray-800 text-xs font-bold py-2 px-4 rounded-full border border-gray-300 hover:shadow-md transition-shadow">
+                  {{ skill }}
+                </span>
               </div>
             </div>
           </div>
         </div>
         
         <!-- Additional Skills & Volunteering -->
-        <div class="grid md:grid-cols-2 gap-6">
-          <div class="overflow-hidden border-0 shadow-lg hover:shadow-xl rounded-lg transition-shadow duration-300 h-full">
-            <div class="bg-gradient-to-r from-gray-900 to-gray-800 py-4 px-6 flex items-center gap-3 border-b">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-white">
-                <circle cx="12" cy="8" r="7"></circle>
-                <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
-              </svg>
-              <h3 class="text-xl font-semibold text-white">Professional Attributes</h3>
-            </div>
-            <div class="p-6">
-              <div class="bg-gray-50 p-4 rounded-lg border border-gray-300">
-                <div class="grid grid-cols-2 gap-4">
-                  <div v-for="(skill, index) in additionalSkills" :key="index" class="flex items-center gap-2 p-3 rounded-md hover:bg-gray-100">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-green-600 flex-shrink-0">
-                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                      <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                    </svg>
-                    <span class="text-gray-800">{{ skill }}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="overflow-hidden border-0 shadow-lg hover:shadow-xl rounded-lg transition-shadow duration-300 h-full">
-            <div class="bg-gradient-to-r from-gray-900 to-gray-800 py-4 px-6 flex items-center gap-3 border-b">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-white">
-                <path d="M17 20h5v-2a3 3 0 0 0-3-3h-2a3 3 0 0 0-3 3v2h3zM10 18H5v-2a3 3 0 0 1 3-3h2m6-1v-2m0-4h.01M17 7a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path>
-              </svg>
-              <h3 class="text-xl font-semibold text-white">Volunteering</h3>
+        <div class="overflow-hidden border-0 shadow-lg hover:shadow-xl rounded-lg transition-shadow duration-300">
+          <div class="bg-gradient-to-r from-gray-900 to-gray-800 py-4 px-6 border-b">
+            <div class="flex justify-center items-center gap-3">
+              <h3 class="text-xl font-semibold text">Professional Attributes</h3>
             </div>
             <div class="p-6">
               <div class="bg-gray-50 p-4 rounded-lg border border-gray-300">
                 <div class="space-y-6">
-                  <div>
-                    <h4 class="text-lg font-bold text-gray-900 mb-1">Mathematics Tutor</h4>
-                    <p class="text-gray-700 mb-3">"Perach Mathematics" Project</p>
-                    <p class="text-gray-600 bg-blue-100 p-3 rounded-lg border-l-6 border-blue-500">
-                      Tutored high school students in 5-unit mathematics, helping them prepare for the Bagrut exams and develop strong problem-solving skills.
-                    </p>
-                  </div>
-                  
-                  <div class="pt-4 border-t border-gray-200">
-                    <h4 class="text-lg font-bold text-gray-900 mb-1">Community Support Volunteer</h4>
-                    <p class="text-gray-700 mb-3">Community Anchor Youth Village</p>
-                    <p class="text-gray-600 bg-blue-100 p-3 rounded-lg border-l-6 border-blue-500">
-                      Supported at-risk youth in enrichment programs, providing guidance and mentorship to help them develop academic and life skills.
-                    </p>
+                  <div v-for="(volunteer, index) in volunteering" :key="index">
+                    <h4 @click="toggleVolunteering(volunteer)"
+                        class="text-lg font-bold text-gray-900 mb-1 flex justify-between items-center"
+                        :class="{'cursor-pointer': isMobile}">
+                      {{ volunteer.title }}
+                      <svg v-if="isMobile" xmlns="http://www.w3.org/2000/svg" 
+                          class="w-4 h-4 ml-2 transition-transform text-gray-700"
+                          :class="{'transform rotate-180': volunteer.isOpen}">
+                        <polyline points="6 9 12 15 18 9" fill="none" stroke="currentColor" stroke-width="2"></polyline>
+                      </svg>
+                    </h4>
+                    
+                    <div v-show="!isMobile || volunteer.isOpen">
+                      <p class="text-gray-700 mb-3">{{ volunteer.organization }}</p>
+                      <p class="text-gray-600 bg-blue-100 p-3 rounded-lg border-l-6 border-blue-500">
+                        {{ volunteer.description }}
+                      </p>
+                    </div>
+                    
+                    <div v-if="index < volunteering.length - 1" class="pt-4 border-t border-gray-200 mt-4"></div>
                   </div>
                 </div>
               </div>
@@ -436,28 +402,123 @@ export default {
         ]
       },
 
-      skills: {
-        "Languages": ["Python (Primary)", "Java", "C/C++", "Go", "C#", "JavaScript"],
-        "Frontend Development": ["JavaScript", "HTML", "CSS", "Vue.js", "Chrome Extensions API"],
-        "Backend Development": ["REST APIs", "Flask", "Node.js", "Express", "Error handling", "Logging"],
-        "Cloud & DevOps": ["GCP", "App Engine", "Git", "GitHub", "Docker"],
-        "Security": ["Cryptography", "Authentication", "Malware Detection", "Network Security", "Web Security"],
-        "Data & Databases": ["PostgreSQL", "Pandas", "SQL", "Data Processing"],
-        "AI & ML": ["Neural Networks", "Reinforcement Learning", "LangChain", "RAG"],
-        "Scientific Programming": ["NumPy", "Pandas"],
-        "Testing": ["Unit Testing", "Integration Testing", "PyTest", "Selenium", "TDD", "QA Automation"]
+      skillsCategories: [
+        {
+          name: "Languages",
+          skills: ["Python (Primary)", "Java", "C/C++", "Go", "C#", "JavaScript"],
+          isOpen: false
+        },
+        {
+          name: "Frontend Development",
+          skills: ["JavaScript", "HTML", "CSS", "Vue.js", "Chrome Extensions API"],
+          isOpen: false
+        },
+        {
+          name: "Backend Development",
+          skills: ["REST APIs", "Flask", "Node.js", "Express", "Error handling", "Logging"],
+          isOpen: false
+        },
+        {
+          name: "Cloud & DevOps",
+          skills: ["GCP", "App Engine", "Git", "GitHub", "Docker"],
+          isOpen: false
+        },
+        {
+          name: "Security",
+          skills: ["Cryptography", "Authentication", "Malware Detection", "Network Security", "Web Security"],
+          isOpen: false
+        },
+        {
+          name: "Data & Databases",
+          skills: ["PostgreSQL", "Pandas", "SQL", "Data Processing"],
+          isOpen: false
+        },
+        {
+          name: "AI & ML",
+          skills: ["Neural Networks", "Reinforcement Learning", "LangChain", "RAG"],
+          isOpen: false
+        },
+        {
+          name: "Scientific Programming",
+          skills: ["NumPy", "Pandas"],
+          isOpen: false
+        },
+        {
+          name: "Testing",
+          skills: ["Unit Testing", "Integration Testing", "PyTest", "Selenium", "TDD", "QA Automation"],
+          isOpen: false
+        }
+      ],
+      workExperience: [
+      {
+        title: "Operations & Property Manager",
+        company: "OurPlace",
+        location: "Tel Aviv, Israel",
+        type: "Full-time",
+        responsibilities: [
+          "Managed operational aspects of multiple residential buildings, including maintenance, contractor coordination, and budget management",
+          "Served as primary point of contact for American tenants in Israel for internship programs, helping with local procedures and resolving issues",
+          "Led renovation projects and ensured compliance with municipal regulations and safety standards",
+          "Handled a wide range of logistical and operational challenges, often under tight deadlines"
+        ],
+        skills: ["Operational Management", "Client Relations", "Problem Solving", "Project Coordination"],
+        isOpen: false
       },
-      additionalSkills: [
-        "Problem analysis and solution design",
-        "Collaborative project implementation",
-        "Systematic requirements gathering",
-        "User-focused thinking",
-        "Rapid self-learning capabilities",
-        "Strong analytical skills",
-        "Leadership and operational management",
-        "Project planning and optimization",
-        "Full-stack development"
-      ]
+      {
+        title: "Site Supervisor & Quantity Surveyor",
+        company: "Eitam Liad Construction Company",
+        location: "",
+        type: "Part-time",
+        responsibilities: [
+          "Oversaw construction projects (budgeting, quality, timelines)",
+          "Supervised on-site teams and coordinated with contractors",
+          "Transitioned to part-time role focusing on quantity surveying",
+          "Available to work 3+ days per week"
+        ],
+        skills: ["Project Planning", "Team Leadership", "Budget Management", "Client Communication"],
+        isOpen: false
+      }
+    ],
+    militaryService: [
+      {
+        title: "Combat Soldier and Commander",
+        unit: "Sayeret Givati Unit",
+        duties: [
+          "Led complex operations and managed team training",
+          "Emphasized leadership and collaboration",
+          "Demonstrated high level of personal responsibility"
+        ],
+        isOpen: false
+      }
+    ],
+    militarySkills: ["Leadership", "Team Coordination", "Crisis Management", "Strategic Planning"],
+    militarySkillsOpen: false,
+
+    volunteering: [
+      {
+        title: "Mathematics Tutor",
+        organization: "\"Perach Mathematics\" Project",
+        description: "Tutored high school students in 5-unit mathematics, helping them prepare for the Bagrut exams and develop strong problem-solving skills.",
+        isOpen: false
+      },
+      {
+        title: "Community Support Volunteer",
+        organization: "Community Anchor Youth Village",
+        description: "Supported at-risk youth in enrichment programs, providing guidance and mentorship to help them develop academic and life skills.",
+        isOpen: false
+      }
+    ],
+    additionalSkills: [
+      "Problem analysis and solution design",
+      "Collaborative project implementation",
+      "Systematic requirements gathering",
+      "User-focused thinking",
+      "Rapid self-learning capabilities",
+      "Strong analytical skills",
+      "Leadership and operational management",
+      "Project planning and optimization",
+      "Full-stack development"
+    ]
     }
   },
   mounted() {
@@ -471,15 +532,40 @@ export default {
     window.removeEventListener('resize', this.checkIfMobile);
   },
   methods: {
-    checkIfMobile() {
-      this.isMobile = window.innerWidth <= 768;
-    },
-    toggleCourse(course) {
-      if (this.isMobile) {
-        course.isOpen = !course.isOpen;
-      }
+  checkIfMobile() {
+    this.isMobile = window.innerWidth <= 768;
+  },
+  toggleCourse(course) {
+    if (this.isMobile) {
+      course.isOpen = !course.isOpen;
+    }
+  },
+  toggleSkillCategory(category) {
+    if (this.isMobile) {
+      category.isOpen = !category.isOpen;
+    }
+  },
+  toggleMilitaryService(service) {
+    if (this.isMobile) {
+      service.isOpen = !service.isOpen;
+    }
+  },
+  toggleMilitarySkills() {
+    if (this.isMobile) {
+      this.militarySkillsOpen = !this.militarySkillsOpen;
+    }
+  },
+  toggleVolunteering(volunteer) {
+    if (this.isMobile) {
+      volunteer.isOpen = !volunteer.isOpen;
+    }
+  },
+  toggleWorkExperience(job) {
+    if (this.isMobile) {
+      job.isOpen = !job.isOpen;
     }
   }
+}
 }
 </script>
 
