@@ -343,7 +343,7 @@ export default {
 .project-card {
   display: flex;
   flex-direction: column;
-  width: 47%;
+  width: 45%;
   min-width: 160px;
   max-width: 200px;  
   margin: 4px;

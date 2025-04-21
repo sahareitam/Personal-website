@@ -17,24 +17,40 @@
               <h3 class="text-xl font-semibold text-black">Education</h3>
             </div>
           </div>
-          <div class="p-6 space-y-6 ">
-            <div class="bg-gray-50 rounded-lg p-4 border-l-4 border border border-gray-300">
-              <h4 class="text-2xl font-bold text-gray-900 mb-2">
-                B.Sc in Software & Information Systems Engineering
-              </h4>
-              <p class="text-lg text-blue-600 font-medium mb-2">Ben-Gurion University</p>
-              <p class="text-gray-700">Currently in third year with 3 semesters remaining</p>
-              <div class="flex flex-wrap items-center gap-3 mt-3">
-                <div class="px-3 py-1 bg-blue-100 text-blue-800 font-medium rounded-full">
-                  GPA: 86.33
+          <div class="p-6 space-y-6">
+            <!-- Education Summary Card - Always visible -->
+            <div class="bg-gray-50 rounded-lg p-4 border-l-4 border border-gray-300">
+              <div @click="toggleEducationDetails" class="cursor-pointer">
+                <h4 class="text-2xl font-bold text-gray-900 mb-2">
+                  B.Sc in Software & Information Systems Engineering
+                </h4>
+                <p class="text-lg text-blue-600 font-medium mb-2">Ben-Gurion University</p>
+                <p class="text-gray-700">Currently in third year with 3 semesters remaining</p>
+                <div class="flex flex-wrap items-center gap-3 mt-3">
+                  <div class="px-3 py-1 bg-blue-100 text-blue-800 font-medium rounded-full">
+                    GPA: 86.33
+                  </div>
+                  <div class="px-3 py-1 bg-green-100 text-green-800 font-medium rounded-full">
+                    Last semester: 90.6
+                  </div>
                 </div>
-                <div class="px-3 py-1 bg-green-100 text-green-800 font-medium rounded-full">
-                  Last semester: 90.6
+                
+                <!-- Show toggle indicator only on mobile -->
+                <div class="flex justify-center mt-4 md:hidden">
+                  <span class="text-blue-600 flex items-center">
+                    {{ educationDetailsOpen ? 'Show less' : 'Show more' }}
+                    <svg xmlns="http://www.w3.org/2000/svg" 
+                        class="w-5 h-5 ml-1 transition-transform"
+                        :class="{'transform rotate-180': educationDetailsOpen}">
+                      <polyline points="6 9 12 15 18 9" fill="none" stroke="currentColor" stroke-width="2"></polyline>
+                    </svg>
+                  </span>
                 </div>
               </div>
             </div>
             
-            <div class="grid md:grid-cols-2 gap-8">
+            <!-- Education Details - Hidden on mobile by default, always visible on desktop -->
+            <div v-show="!isMobile || educationDetailsOpen" class="grid md:grid-cols-2 gap-8">
               <div>
                 <h5 class="flex items-center gap-2 text-lg font-semibold mb-4 text-amber-700">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
@@ -45,19 +61,19 @@
                 </h5>
                 <div class="space-y-3">
                   <div v-for="(course, index) in educationCourses.inProgress" :key="index" 
-                       class="bg-amber-50 p-4 rounded-lg border border-amber-100 hover:shadow-md transition-shadow">
+                      class="bg-amber-50 p-4 rounded-lg border border-amber-100 hover:shadow-md transition-shadow">
                     <div @click="toggleCourse(course)" :class="{'cursor-pointer': isMobile}">
                       <div class="flex justify-between">
                         <span class="font-medium text-amber-900">{{ course.name }}</span>
                         <svg v-if="isMobile" xmlns="http://www.w3.org/2000/svg" 
-                             class="w-4 h-4 ml-2 transition-transform text-amber-700"
-                             :class="{'transform rotate-180': course.isOpen}">
+                            class="w-4 h-4 ml-2 transition-transform text-amber-700"
+                            :class="{'transform rotate-180': course.isOpen}">
                           <polyline points="6 9 12 15 18 9" fill="none" stroke="currentColor" stroke-width="2"></polyline>
                         </svg>
                       </div>
                       <p v-if="course.description" 
-                         v-show="!isMobile || course.isOpen" 
-                         class="text-sm text-amber-700 mt-1">{{ course.description }}</p>
+                        v-show="!isMobile || course.isOpen" 
+                        class="text-sm text-amber-700 mt-1">{{ course.description }}</p>
                     </div>
                   </div>
                 </div>
@@ -73,29 +89,29 @@
                 </h5>
                 <div class="space-y-3">
                   <div v-for="(course, index) in educationCourses.completed" :key="index" 
-                       class="bg-green-50 p-4 rounded-lg border border-green-100 hover:shadow-md transition-shadow">
+                      class="bg-green-50 p-4 rounded-lg border border-green-100 hover:shadow-md transition-shadow">
                     <div @click="toggleCourse(course)" :class="{'cursor-pointer': isMobile}">
                       <div class="flex justify-between">
                         <span class="font-medium text-green-900">{{ course.name }}</span>
                         <div class="flex items-center">
                           <span v-if="course.grade" class="text-green-700 font-medium">{{ course.grade }}</span>
                           <svg v-if="isMobile" xmlns="http://www.w3.org/2000/svg" 
-                               class="w-4 h-4 ml-2 transition-transform"
-                               :class="{'transform rotate-180': course.isOpen}">
+                              class="w-4 h-4 ml-2 transition-transform"
+                              :class="{'transform rotate-180': course.isOpen}">
                             <polyline points="6 9 12 15 18 9" fill="none" stroke="currentColor" stroke-width="2"></polyline>
                           </svg>
                         </div>
                       </div>
                       <p v-if="course.description" 
-                         v-show="!isMobile || course.isOpen" 
-                         class="text-sm text-green-700 mt-1">{{ course.description }}</p>
+                        v-show="!isMobile || course.isOpen" 
+                        class="text-sm text-green-700 mt-1">{{ course.description }}</p>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
             
-            <div class="mt-6 p-4 bg-blue-50 border border-blue-100 rounded-lg">
+            <div v-show="!isMobile || educationDetailsOpen" class="mt-6 p-4 bg-blue-50 border border-blue-100 rounded-lg">
               <h4 class="font-medium mb-3 text-blue-700">Additional Training</h4>
               <p class="text-blue-800">
                 LangChain & LLM Development (In Progress) - RAG implementation, Vector stores and embeddings (Pinecone, FAISS)
@@ -112,78 +128,48 @@
             </div>
           </div>
           <div class="p-6">
-            <div class="grid md:grid-cols-3 gap-6">
-              <div v-for="category in skillsCategories" :key="category.name" 
-                  class="bg-gray-50 p-4 rounded-lg border border-gray-300 hover:shadow-md transition-shadow skills">
-                
-                <!-- title in mobile-->
-                <h4 @click="toggleSkillCategory(category)" 
-                    class="font-bold mb-4 text-gray-900 border-b border-gray-200 pb-2 mb-4 flex justify-between items-center"
-                    :class="{'cursor-pointer': isMobile}">
-                  {{ category.name }}
-                  <svg v-if="isMobile" xmlns="http://www.w3.org/2000/svg" 
-                      class="w-4 h-4 ml-2 transition-transform text-gray-700"
-                      :class="{'transform rotate-180': category.isOpen}">
-                    <polyline points="6 9 12 15 18 9" fill="none" stroke="currentColor" stroke-width="2"></polyline>
-                  </svg>
-                </h4>
-                
-                <!-- tags of skill-->
-                <div class="flex flex-wrap gap-2" v-show="!isMobile || category.isOpen">
-                  <span
-                    v-for="skill in category.skills"
-                    :key="skill"
-                    class="bg-green-400 text-gray-800 text-xs font-bold py-1 px-4 rounded-full border border-green-100 hover:shadow-md transition-shadow">
-                    {{ skill }}
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Work Experience -->
-        <div class="overflow-hidden border-0 shadow-lg hover:shadow-xl rounded-lg transition-shadow duration-300">
-          <div class="bg-gradient-to-r from-gray-900 to-gray-800 py-4 px-6 border-b">
-            <div class="flex justify-center items-center gap-3">
-              <h3 class="text-xl font-semibold text-black">Work Experience</h3>
-            </div>
-          </div>
-          <div class="p-6 space-y-6">
-            <!-- Experience Items -->
-            <div v-for="(job, index) in workExperience" :key="index" 
-                class="bg-gray-50 p-4 rounded-lg border border-gray-300">
-              <div class="flex flex-wrap justify-between items-start mb-3">
-                <!-- title for mobile-->
-                <h4 @click="toggleWorkExperience(job)" 
-                    class="text-xl font-semibold text-gray-900 flex justify-between items-center w-full"
-                    :class="{'cursor-pointer': isMobile}">
-                  {{ job.title }}
-                  <svg v-if="isMobile" xmlns="http://www.w3.org/2000/svg" 
-                      class="w-4 h-4 ml-2 transition-transform text-gray-700"
-                      :class="{'transform rotate-180': job.isOpen}">
-                    <polyline points="6 9 12 15 18 9" fill="none" stroke="currentColor" stroke-width="2"></polyline>
-                  </svg>
-                </h4>
-                <span v-show="!isMobile || job.isOpen" class="px-2 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full">
-                  {{ job.type }}
-                </span>
+            <div v-if="isMobile" class="bg-gray-50 p-4 rounded-lg border border-gray-300 cursor-pointer" @click="toggleSkillsDetails">
+              <div class="flex justify-between items-center">
+                <h4 class="font-bold text-gray-900">Skills Overview</h4>
+                <svg xmlns="http://www.w3.org/2000/svg" 
+                    class="w-5 h-5 transition-transform"
+                    :class="{'transform rotate-180': skillsDetailsOpen}">
+                  <polyline points="6 9 12 15 18 9" fill="none" stroke="currentColor" stroke-width="2"></polyline>
+                </svg>
               </div>
               
-              <!--hide content in mobile-->
-              <div v-show="!isMobile || job.isOpen">
-                <p class="text-blue-600 mb-4">{{ job.company }}{{ job.location ? ' | ' + job.location : '' }}</p>
-                <ul class="space-y-2 text-gray-700">
-                  <li v-for="(item, i) in job.responsibilities" :key="i" class="flex items-start gap-2">
-                    <span class="text-blue-500 mt-1">•</span>
-                    <span>{{ item }}</span>
-                  </li>
-                </ul>
-                <div class="mt-5 pt-4 border-t border-gray-200">
-                  <h5 class="font-bold text-gray-900 mb-2">Key Skills:</h5>
-                  <div class="flex flex-wrap gap-2">
-                    <span v-for="(skill, i) in job.skills" :key="i"
-                        class="bg-gray-200 text-gray-800 text-xs font-bold py-2 px-4 rounded-full border border-gray-300 hover:shadow-md transition-shadow">
+              <div class="mt-3 text-blue-600" v-if="!skillsDetailsOpen">
+                <span class="flex items-center">
+                  View skill categories
+                  <svg xmlns="http://www.w3.org/2000/svg" 
+                      class="w-4 h-4 ml-1">
+                    <polyline points="6 9 12 15 18 9" fill="none" stroke="currentColor" stroke-width="2"></polyline>
+                  </svg>
+                </span>
+              </div>
+            </div>
+
+            <div v-show="!isMobile || skillsDetailsOpen" :class="{'mt-4': isMobile && skillsDetailsOpen}">
+              <div class="grid md:grid-cols-3 gap-6">
+                <div v-for="category in skillsCategories" :key="category.name" 
+                    class="bg-gray-50 p-4 rounded-lg border border-gray-300 hover:shadow-md transition-shadow skills">
+                  
+                  <h4 @click="toggleSkillCategory(category)" 
+                      class="font-bold mb-4 text-gray-900 border-b border-gray-200 pb-2 mb-4 flex justify-between items-center"
+                      :class="{'cursor-pointer': isMobile}">
+                    {{ category.name }}
+                    <svg v-if="isMobile" xmlns="http://www.w3.org/2000/svg" 
+                        class="w-4 h-4 ml-2 transition-transform text-gray-700"
+                        :class="{'transform rotate-180': category.isOpen}">
+                      <polyline points="6 9 12 15 18 9" fill="none" stroke="currentColor" stroke-width="2"></polyline>
+                    </svg>
+                  </h4>
+                  
+                  <div class="flex flex-wrap gap-2" v-show="!isMobile || category.isOpen">
+                    <span
+                      v-for="skill in category.skills"
+                      :key="skill"
+                      class="bg-green-400 text-gray-800 text-xs font-bold py-1 px-4 rounded-full border border-green-100 hover:shadow-md transition-shadow">
                       {{ skill }}
                     </span>
                   </div>
@@ -201,65 +187,120 @@
             </div>
           </div>
           <div class="p-6">
-            <div v-for="(service, index) in militaryService" :key="index"
-                class="bg-gray-50 p-4 rounded-lg mb-4 border border-gray-300">
-              <h4 @click="toggleMilitaryService(service)"
-                  class="text-xl font-semibold text-gray-900 mb-3 flex justify-between items-center"
-                  :class="{'cursor-pointer': isMobile}">
-                {{ service.title }}
+            <!-- Military Summary - Always visible -->
+            <div @click="toggleMilitaryDetails" class="bg-gray-50 p-4 rounded-lg border border-gray-300 cursor-pointer mb-4">
+              <h4 class="text-xl font-semibold text-gray-900 mb-3 flex justify-between items-center">
+                Sayeret Givati Unit
+                <!-- Mobile toggle icon -->
                 <svg v-if="isMobile" xmlns="http://www.w3.org/2000/svg" 
-                    class="w-4 h-4 ml-2 transition-transform text-gray-700"
-                    :class="{'transform rotate-180': service.isOpen}">
+                    class="w-5 h-5 ml-2 transition-transform text-gray-700"
+                    :class="{'transform rotate-180': militaryDetailsOpen}">
                   <polyline points="6 9 12 15 18 9" fill="none" stroke="currentColor" stroke-width="2"></polyline>
                 </svg>
               </h4>
               
-              <div v-show="!isMobile || service.isOpen">
-                <p class="text-blue-600 mb-4">{{ service.unit }}</p>
-                <ul class="space-y-2 text-gray-700">
-                  <li v-for="(duty, i) in service.duties" :key="i" class="flex items-start gap-2">
-                    <span class="text-blue-500 mt-1">•</span>
-                    <span>{{ duty }}</span>
-                  </li>
-                </ul>
+              <p class="text-blue-600 mb-2">Combat Soldier and Commander</p>
+              
+              <!-- Show toggle text only on mobile -->
+              <div class="md:hidden mt-2">
+                <span class="text-blue-600 flex items-center">
+                  {{ militaryDetailsOpen ? 'Show less' : 'Show details' }}
+                  <svg xmlns="http://www.w3.org/2000/svg" 
+                      class="w-5 h-5 ml-1 transition-transform"
+                      :class="{'transform rotate-180': militaryDetailsOpen}">
+                    <polyline points="6 9 12 15 18 9" fill="none" stroke="currentColor" stroke-width="2"></polyline>
+                  </svg>
+                </span>
               </div>
             </div>
             
-            <div class="bg-gray-50 p-4 rounded-lg border border-gray-300">
-              <h5 @click="toggleMilitarySkills"
-                  class="font-bold text-gray-900 mb-4 flex justify-between items-center"
-                  :class="{'cursor-pointer': isMobile}">
-                Transferable Skills:
-                <svg v-if="isMobile" xmlns="http://www.w3.org/2000/svg" 
-                    class="w-4 h-4 ml-2 transition-transform text-gray-700"
-                    :class="{'transform rotate-180': militarySkillsOpen}">
-                  <polyline points="6 9 12 15 18 9" fill="none" stroke="currentColor" stroke-width="2"></polyline>
-                </svg>
-              </h5>
+            <!-- Military Details - Hidden on mobile by default -->
+            <div v-show="!isMobile || militaryDetailsOpen">
+              <div v-for="(service, index) in militaryService" :key="index"
+                  class="bg-gray-50 p-4 rounded-lg mb-4 border border-gray-300">
+                <h4 @click="toggleMilitaryService(service)"
+                    class="text-xl font-semibold text-gray-900 mb-3 flex justify-between items-center"
+                    :class="{'cursor-pointer': isMobile}">
+                  {{ service.title }}
+                  <svg v-if="isMobile" xmlns="http://www.w3.org/2000/svg" 
+                      class="w-4 h-4 ml-2 transition-transform text-gray-700"
+                      :class="{'transform rotate-180': service.isOpen}">
+                    <polyline points="6 9 12 15 18 9" fill="none" stroke="currentColor" stroke-width="2"></polyline>
+                  </svg>
+                </h4>
+                
+                <div v-show="!isMobile || service.isOpen">
+                  <p class="text-blue-600 mb-4">{{ service.unit }}</p>
+                  <ul class="space-y-2 text-gray-700">
+                    <li v-for="(duty, i) in service.duties" :key="i" class="flex items-start gap-2">
+                      <span class="text-blue-500 mt-1">•</span>
+                      <span>{{ duty }}</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
               
-              <div v-show="!isMobile || militarySkillsOpen" class="flex flex-wrap gap-2">
-                <span v-for="(skill, i) in militarySkills" :key="i"
-                    class="bg-gray-200 text-gray-800 text-xs font-bold py-2 px-4 rounded-full border border-gray-300 hover:shadow-md transition-shadow">
-                  {{ skill }}
-                </span>
+              <div class="bg-gray-50 p-4 rounded-lg border border-gray-300">
+                <h5 @click="toggleMilitarySkills"
+                    class="font-bold text-gray-900 mb-4 flex justify-between items-center"
+                    :class="{'cursor-pointer': isMobile}">
+                  Transferable Skills:
+                  <svg v-if="isMobile" xmlns="http://www.w3.org/2000/svg" 
+                      class="w-4 h-4 ml-2 transition-transform text-gray-700"
+                      :class="{'transform rotate-180': militarySkillsOpen}">
+                    <polyline points="6 9 12 15 18 9" fill="none" stroke="currentColor" stroke-width="2"></polyline>
+                  </svg>
+                </h5>
+                
+                <div v-show="!isMobile || militarySkillsOpen" class="flex flex-wrap gap-2">
+                  <span v-for="(skill, i) in militarySkills" :key="i"
+                      class="bg-gray-200 text-gray-800 text-xs font-bold py-2 px-4 rounded-full border border-gray-300 hover:shadow-md transition-shadow">
+                    {{ skill }}
+                  </span>
+                </div>
               </div>
             </div>
           </div>
         </div>
         
         <!-- Additional Skills & Volunteering -->
-        <div class="grid md:grid-cols-2 gap-6">
-          <div class="overflow-hidden border-0 shadow-lg hover:shadow-xl rounded-lg transition-shadow duration-300 h-full">
-            <div class="bg-gradient-to-r from-gray-900 to-gray-800 py-4 px-6 flex items-center gap-3 border-b">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-white">
-                <circle cx="12" cy="8" r="7"></circle>
-                <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
-              </svg>
-              <h3 class="text-xl font-semibold text">Professional Attributes</h3>
+        <!-- Professional Attributes -->
+        <div class="overflow-hidden border-0 shadow-lg hover:shadow-xl rounded-lg transition-shadow duration-300">
+          <div class="bg-gradient-to-r from-gray-900 to-gray-800 py-4 px-6 border-b">
+            <div class="flex justify-center items-center gap-3">
+              <h3 class="text-xl font-semibold text-black">Professional Attributes</h3>
             </div>
-            <div class="p-6">
+          </div>
+          <div class="p-6">
+            <!-- Professional Attributes Summary - Always visible -->
+            <div @click="toggleAttributesDetails" class="bg-gray-50 p-4 rounded-lg border border-gray-300 cursor-pointer mb-4">
+              <h4 class="text-xl font-semibold text-gray-900 mb-3 flex justify-between items-center">
+                Key Professional Attributes
+                <!-- Mobile toggle icon -->
+                <svg v-if="isMobile" xmlns="http://www.w3.org/2000/svg" 
+                    class="w-5 h-5 ml-2 transition-transform text-gray-700"
+                    :class="{'transform rotate-180': attributesDetailsOpen}">
+                  <polyline points="6 9 12 15 18 9" fill="none" stroke="currentColor" stroke-width="2"></polyline>
+                </svg>
+              </h4>
+                            
+              <!-- Show toggle text only on mobile -->
+              <div class="md:hidden mt-2">
+                <span class="text-blue-600 flex items-center">
+                  {{ attributesDetailsOpen ? 'Show less' : 'Show details' }}
+                  <svg xmlns="http://www.w3.org/2000/svg" 
+                      class="w-5 h-5 ml-1 transition-transform"
+                      :class="{'transform rotate-180': attributesDetailsOpen}">
+                    <polyline points="6 9 12 15 18 9" fill="none" stroke="currentColor" stroke-width="2"></polyline>
+                  </svg>
+                </span>
+              </div>
+            </div>
+            
+            <!-- Attributes Details - Hidden on mobile by default -->
+            <div v-show="!isMobile || attributesDetailsOpen">
               <div class="bg-gray-50 p-4 rounded-lg border border-gray-300">
-                <div class="grid grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div v-for="(skill, index) in additionalSkills" :key="index" class="flex items-center gap-2 p-3 rounded-md hover:bg-gray-100">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-green-600 flex-shrink-0">
                       <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
@@ -271,15 +312,45 @@
               </div>
             </div>
           </div>
+        </div>
 
-          <div class="overflow-hidden border-0 shadow-lg hover:shadow-xl rounded-lg transition-shadow duration-300 h-full">
-            <div class="bg-gradient-to-r from-gray-900 to-gray-800 py-4 px-6 flex items-center gap-3 border-b">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-white">
-                <path d="M17 20h5v-2a3 3 0 0 0-3-3h-2a3 3 0 0 0-3 3v2h3zM10 18H5v-2a3 3 0 0 1 3-3h2m6-1v-2m0-4h.01M17 7a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path>
-              </svg>
-              <h3 class="text-xl font-semibold text">Volunteering</h3>
+        <!-- Volunteering -->
+        <div class="overflow-hidden border-0 shadow-lg hover:shadow-xl rounded-lg transition-shadow duration-300">
+          <div class="bg-gradient-to-r from-gray-900 to-gray-800 py-4 px-6 border-b">
+            <div class="flex justify-center items-center gap-3">
+              <h3 class="text-xl font-semibold text-black">Volunteering</h3>
             </div>
-            <div class="p-6">
+          </div>
+          <div class="p-6">
+            <!-- Volunteering Summary - Always visible -->
+            <div @click="toggleVolunteeringDetails" class="bg-gray-50 p-4 rounded-lg border border-gray-300 cursor-pointer mb-4">
+              <h4 class="text-xl font-semibold text-gray-900 mb-3 flex justify-between items-center">
+                Community & Educational Involvement
+                <!-- Mobile toggle icon -->
+                <svg v-if="isMobile" xmlns="http://www.w3.org/2000/svg" 
+                    class="w-5 h-5 ml-2 transition-transform text-gray-700"
+                    :class="{'transform rotate-180': volunteeringDetailsOpen}">
+                  <polyline points="6 9 12 15 18 9" fill="none" stroke="currentColor" stroke-width="2"></polyline>
+                </svg>
+              </h4>
+              
+              <p class="text-blue-600 mb-2">Academic tutoring and community support</p>
+              
+              <!-- Show toggle text only on mobile -->
+              <div class="md:hidden mt-2">
+                <span class="text-blue-600 flex items-center">
+                  {{ volunteeringDetailsOpen ? 'Show less' : 'Show details' }}
+                  <svg xmlns="http://www.w3.org/2000/svg" 
+                      class="w-5 h-5 ml-1 transition-transform"
+                      :class="{'transform rotate-180': volunteeringDetailsOpen}">
+                    <polyline points="6 9 12 15 18 9" fill="none" stroke="currentColor" stroke-width="2"></polyline>
+                  </svg>
+                </span>
+              </div>
+            </div>
+            
+            <!-- Volunteering Details - Hidden on mobile by default -->
+            <div v-show="!isMobile || volunteeringDetailsOpen">
               <div class="bg-gray-50 p-4 rounded-lg border border-gray-300">
                 <div class="space-y-6">
                   <div v-for="(volunteer, index) in volunteering" :key="index">
@@ -319,6 +390,21 @@ export default {
   data() {
     return {
       isMobile: false,
+      educationDetailsOpen: false,
+      skillsDetailsOpen: false,
+      workDetailsOpen: false,
+      militaryDetailsOpen: false,
+      attributesDetailsOpen: false,
+      volunteeringDetailsOpen: false,
+      mainSkills: [
+        "Python", 
+        "JavaScript", 
+        "Java", 
+        "REST APIs", 
+        "Vue.js", 
+        "Machine Learning", 
+        "Git"
+      ],
       educationCourses: {
         inProgress: [
           {
@@ -561,6 +647,13 @@ export default {
   checkIfMobile() {
     this.isMobile = window.innerWidth <= 768;
   },
+  
+  toggleAttributesDetails() {
+    if (this.isMobile) {
+      this.attributesDetailsOpen = !this.attributesDetailsOpen;
+    }
+  },
+
   toggleCourse(course) {
     if (this.isMobile) {
       course.isOpen = !course.isOpen;
@@ -569,6 +662,11 @@ export default {
   toggleSkillCategory(category) {
     if (this.isMobile) {
       category.isOpen = !category.isOpen;
+    }
+  },
+  toggleSkillsDetails() {
+    if (this.isMobile) {
+      this.skillsDetailsOpen = !this.skillsDetailsOpen;
     }
   },
   toggleMilitaryService(service) {
@@ -589,6 +687,28 @@ export default {
   toggleWorkExperience(job) {
     if (this.isMobile) {
       job.isOpen = !job.isOpen;
+    }
+  },
+  toggleWorkDetails() {
+    if (this.isMobile) {
+      this.workDetailsOpen = !this.workDetailsOpen;
+    }
+  },
+  
+  toggleMilitaryDetails() {
+    if (this.isMobile) {
+      this.militaryDetailsOpen = !this.militaryDetailsOpen;
+    }
+  },
+  
+  toggleVolunteeringDetails() {
+    if (this.isMobile) {
+      this.volunteeringDetailsOpen = !this.volunteeringDetailsOpen;
+    }
+  },
+  toggleEducationDetails() {
+    if (this.isMobile) {
+      this.educationDetailsOpen = !this.educationDetailsOpen;
     }
   }
 }
