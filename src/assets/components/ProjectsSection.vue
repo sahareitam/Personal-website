@@ -347,7 +347,7 @@ export default {
   min-width: 160px;
   max-width: 200px;  
   margin: 4px;
-  padding: 2px;
+  padding: 1px;
   border: 1px solid #979797;
   border-radius: 12px;
   background-color: #fff;
