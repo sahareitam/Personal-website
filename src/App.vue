@@ -53,8 +53,17 @@ export default {
         return false;
       });
 
-      if (current) {
+      if (current && current !== this.activeSection) {
         this.activeSection = current;
+        
+        // Track page view using global gtag function
+        if (window.gtag) {
+          window.gtag('event', 'page_view', {
+            page_title: `Sahar Eitam | ${current.charAt(0).toUpperCase() + current.slice(1)}`,
+            page_path: `/${current}`,
+            page_location: window.location.href
+          });
+        }
       }
     }
   }
