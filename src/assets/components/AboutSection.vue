@@ -248,10 +248,36 @@
         </div>
         
         <!-- Additional Skills & Volunteering -->
-        <div class="overflow-hidden border-0 shadow-lg hover:shadow-xl rounded-lg transition-shadow duration-300">
-          <div class="bg-gradient-to-r from-gray-900 to-gray-800 py-4 px-6 border-b">
-            <div class="flex justify-center items-center gap-3">
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="overflow-hidden border-0 shadow-lg hover:shadow-xl rounded-lg transition-shadow duration-300 h-full">
+            <div class="bg-gradient-to-r from-gray-900 to-gray-800 py-4 px-6 flex items-center gap-3 border-b">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-white">
+                <circle cx="12" cy="8" r="7"></circle>
+                <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+              </svg>
               <h3 class="text-xl font-semibold text">Professional Attributes</h3>
+            </div>
+            <div class="p-6">
+              <div class="bg-gray-50 p-4 rounded-lg border border-gray-300">
+                <div class="grid grid-cols-2 gap-4">
+                  <div v-for="(skill, index) in additionalSkills" :key="index" class="flex items-center gap-2 p-3 rounded-md hover:bg-gray-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-green-600 flex-shrink-0">
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                      <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                    <span class="text-gray-800">{{ skill }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="overflow-hidden border-0 shadow-lg hover:shadow-xl rounded-lg transition-shadow duration-300 h-full">
+            <div class="bg-gradient-to-r from-gray-900 to-gray-800 py-4 px-6 flex items-center gap-3 border-b">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-white">
+                <path d="M17 20h5v-2a3 3 0 0 0-3-3h-2a3 3 0 0 0-3 3v2h3zM10 18H5v-2a3 3 0 0 1 3-3h2m6-1v-2m0-4h.01M17 7a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path>
+              </svg>
+              <h3 class="text-xl font-semibold text">Volunteering</h3>
             </div>
             <div class="p-6">
               <div class="bg-gray-50 p-4 rounded-lg border border-gray-300">
