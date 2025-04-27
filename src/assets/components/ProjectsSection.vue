@@ -225,6 +225,13 @@ export default {
           inProgress: true
         },
         {
+        title: "Space Invaders Game",
+        description: "Classic arcade-style space shooter game developed with vanilla JavaScript. Features include enemy formations, increasing game difficulty, custom spaceship colors, score tracking, and a personal leaderboard system.",
+        tech: ["JavaScript", "HTML5", "CSS3", "Local Storage API", "Canvas API"],
+        github: "https://github.com/wed-2023/assignment2-318283116_314743485_assignment2",
+        demo: "https://wed-2023.github.io/assignment2-318283116_314743485_assignment2/",
+        },
+        {
           title: "Chrome Keyboard Fixer",
           description: "Chrome extension with Python Flask backend on GCP. Implements RESTful API with comprehensive error handling, concurrency management, and security best practices including input validation and IP-based rate limiting.",
           tech: ["JavaScript", "Python", "Flask", "GCP", "REST API"],
@@ -257,6 +264,7 @@ export default {
           github: "https://github.com/sahareitam/LeetCode"
         }
       ],
+
       gradients: [
         "linear-gradient(to right, #8b5cf6, #3b82f6)", // Purple to Blue
         "linear-gradient(to right, #ef4444, #f97316)", // Red to Orange
